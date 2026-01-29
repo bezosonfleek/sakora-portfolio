@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYS-ADMIN // SECURITY ARCHITECT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #030303; font-family: 'Plus Jakarta Sans', sans-serif; color: #94a3b8; }
+        .mono { font-family: 'Fira Code', monospace; }
+        .scanning-animation {
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+            background-size: 200% 100%;
+            animation: scan 2s infinite;
+        }
+        @keyframes scan { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .panel { background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .glow-emerald:hover { border-color: #10b981; box-shadow: 0 0 20px rgba(16, 185, 129, 0.1); }
+    </style>
+</head>
+<body class="p-4 lg:p-12">
+
+    <nav class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mb-12 border-b border-white/10 pb-8 gap-6">
+        <div class="flex items-center gap-6">
+            <div class="h-14 w-14 bg-emerald-500/10 border border-emerald-500/50 rounded flex items-center justify-center">
+                <svg class="w-7 h-7 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            </div>
+            <div>
+                <h1 class="text-white text-2xl font-black uppercase tracking-tighter">Personnel<span class="text-emerald-500">_</span>Archives</h1>
+                <p class="mono text-[9px] text-emerald-500/60 uppercase tracking-widest">Network & Security Specialist</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-6 order-last md:order-none">
+            <div class="text-right hidden sm:block">
+                <p class="mono text-[10px] text-emerald-500 font-bold uppercase tracking-widest">Connection: Encrypted</p>
+                <p class="mono text-[10px] text-zinc-500 uppercase">IP: 104.14.14.x</p>
+            </div>
+            <div class="h-10 w-10 rounded-full border border-emerald-500/30 flex items-center justify-center">
+                <div class="h-2 w-2 bg-emerald-500 rounded-full animate-ping"></div>
+            </div>
+            <div class="flex gap-4 mono text-[10px]">
+                <a href="#about" class="px-4 py-2 panel rounded hover:text-white transition">ABOUT</a>
+                <a href="#projects" class="px-4 py-2 panel rounded hover:text-white transition">PROJECTS</a>
+                <a href="mailto:geoffreysakora@gmail.com" class="px-4 py-2 bg-emerald-500 text-black font-bold rounded hover:bg-emerald-400 transition">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <aside class="lg:col-span-4 space-y-6">
+            <div class="panel p-5 rounded-xl border-zinc-800">
+                <div class="flex gap-1.5 mb-4">
+                    <div class="w-2 h-2 rounded-full bg-red-500/40"></div>
+                    <div class="w-2 h-2 rounded-full bg-yellow-500/40"></div>
+                    <div class="w-2 h-2 rounded-full bg-green-500/40"></div>
+                </div>
+                <div id="terminal-output" class="mono text-[11px] h-48 overflow-y-auto text-emerald-500 space-y-1 mb-4">
+                    </div>
+                <div class="flex mono text-[11px] border-t border-white/5 pt-3">
+                    <span class="text-emerald-500 mr-2">$</span>
+                    <input type="text" id="terminal-input" placeholder="type 'help'..." class="bg-transparent outline-none text-white w-full">
+                </div>
+            </div>
+
+            <div class="panel p-6 rounded-xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 scanning-animation"></div>
+                <h3 class="text-white text-xs font-bold uppercase mb-4 tracking-widest">Global Threat Intel</h3>
+                <div class="space-y-4 mono text-[10px]">
+                    <div class="border-l border-red-500/50 pl-3">
+                        <p class="text-red-400 font-bold">CVE-2026-991</p>
+                        <p class="text-zinc-500">RCE vulnerability in legacy routers.</p>
+                    </div>
+                    <div class="border-l border-emerald-500/50 pl-3">
+                        <p class="text-emerald-400 font-bold">PATCH_SUCCESS</p>
+                        <p class="text-zinc-500">Node cluster 04 hardened successfully.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="lg:col-span-8 space-y-8">
+            
+            <section id="about" class="panel p-8 rounded-2xl glow-emerald">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="md:col-span-1">
+                        <div class="w-full aspect-square bg-zinc-800 rounded border border-white/10 grayscale mb-4">
+                            <img src="jeff-passport.jpg" class="w-full h-full object-cover opacity-50">
+                        </div>
+                        <div class="mono text-[10px] space-y-1">
+                            <p><span class="text-zinc-500">ID:</span> user_777</p>
+                            <p><span class="text-zinc-500">LOC:</span> 104.14.14.x/24</p>
+                            <p><span class="text-zinc-500">ROLE:</span> SEC_ARCHITECT</p>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h2 class="text-white text-3xl font-bold uppercase tracking-tighter mb-4 italic">Mission_Briefing</h2>
+                        <p class="text-sm leading-relaxed mb-4 italic">
+                           I build at the intersection of connectivity and protection. My focus is on the entire lifecycle of a request—from the <b>Network</b> hardware that routes it, to the <b>Cloud</b> instances that process it, and the <b>Cybersecurity concepts</b> that keeps it private. I am currently dedicated to <b>IAM</b> principles and automated scanning to ensure every system is stable, visible, and secure by design.                        </p>
+                        <p class="text-sm leading-relaxed mb-6">
+                            With a background in hybrid-cloud architecture, I focus on securing cloud environments that remain resilient under pressure; I secure their future.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-3 bg-black/40 rounded border border-white/5">
+                                <p class="text-[10px] font-bold text-emerald-500 uppercase">Networking</p>
+                                <p class="text-[11px]">Linux, VPN Tunnels, SIEM</p>
+                            </div>
+                            <div class="p-3 bg-black/40 rounded border border-white/5">
+                                <p class="text-[10px] font-bold text-blue-500 uppercase">Cloud</p>
+                                <p class="text-[11px]">AWS (VPC, IAM), Azure</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="panel p-8 rounded-2xl relative bg-gradient-to-br from-zinc-900/50 to-black glow-emerald">
+                <div class="flex justify-between items-start mb-8">
+                    <div>
+                        <span class="text-emerald-500 mono text-[10px] uppercase font-bold tracking-widest mb-1 block">Active_Tooling</span>
+                        <a href="https://packetpulse.net" target="_blank" class="hover:text-emerald-400 transition-colors">
+                            <h3 class="text-3xl font-black text-white italic tracking-tighter underline decoration-emerald-500/30">PacketPulse</h3>
+                        </a>
+                    </div>
+                    <a href="https://packetpulse.net" target="_blank" class="px-2 py-1 border border-emerald-500/40 text-emerald-500 mono text-[9px] rounded hover:bg-emerald-500/10 transition-all">LAUNCH_PROJECT</a>
+                </div>
+
+                <p class="text-sm text-zinc-400 mb-8 max-w-xl">
+                    A multi-threaded Python engine built for deep network enumeration. It automates the discovery of live hosts and performs service fingerprinting across 65,535 ports to identify misconfigurations.
+                </p>
+
+                <div class="bg-black/80 rounded-lg p-5 mono text-[10px] border border-zinc-800 mb-6">
+                    <div class="grid grid-cols-4 border-b border-zinc-800 pb-2 mb-3 text-zinc-500 font-bold uppercase tracking-tighter">
+                        <span>Target_Host</span><span>Port</span><span>Service</span><span>Result</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-4"><span>10.0.0.122</span><span>22</span><span>SSH</span><span class="text-emerald-500">OPEN</span></div>
+                        <div class="grid grid-cols-4"><span>10.0.0.122</span><span>443</span><span>HTTPS</span><span class="text-emerald-500">OPEN</span></div>
+                        <div class="grid grid-cols-4 text-zinc-600 animate-pulse"><span>10.0.0.125</span><span>3306</span><span>MYSQL</span><span>SCANNING...</span></div>
+                        <div class="grid grid-cols-4 text-zinc-600 animate-pulse"><span>10.0.0.125</span><span>8080</span><span>PROXY</span><span>SCANNING...</span></div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2 text-[10px] mono">
+                    <span class="px-2 py-1 bg-white/5 rounded">Scapy</span>
+                    <span class="px-2 py-1 bg-white/5 rounded">Nmap-Engine</span>
+                    <span class="px-2 py-1 bg-white/5 rounded">AsyncIO</span>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="mt-20 py-10 border-t border-white/5 flex flex-col items-center opacity-40 hover:opacity-100 transition">
+        <div class="flex gap-8 mono text-[10px] uppercase tracking-[0.3em] mb-4">
+            <a href="https://github.com/bezosonfleek/">Github</a>
+            <a href="https://www.linkedin.com/in/geoffrey-sakora-7o7/">LinkedIn</a>
+            <a href="mailto:geoffreysakora@gmail.com">Report_Bug</a>
+        </div>
+        <p class="mono text-[8px]">0x00FF42 // AUTH_CERT_777_SIGNED</p>
+    </footer>
+
+    <script>
+        const output = document.getElementById('terminal-output');
+        const input = document.getElementById('terminal-input');
+
+        const initialMessages = [
+            "Initializing secure session...",
+            "Host: 127.0.0.1 (Local)",
+            "Accessing personnel dossier...",
+            "SUCCESS: Profile Loaded.",
+            "Type 'help' to see system commands."
+        ];
+
+        let msgIndex = 0;
+        function typeInit() {
+            if (msgIndex < initialMessages.length) {
+                const p = document.createElement('p');
+                p.textContent = `> ${initialMessages[msgIndex]}`;
+                output.appendChild(p);
+                msgIndex++;
+                output.scrollTop = output.scrollHeight;
+                setTimeout(typeInit, 600);
+            }
+        }
+        typeInit();
+
+        const commands = {
+            'help': 'Available: skills, status, contact, clear',
+            'ls': ' skills  status  contact  clear',
+            'skills': 'Network Configuration, Docker, Cloud, Web Security, Linux, Python',
+            'status': 'System Operational. All nodes green.',
+            'contact': 'Direct Route: geoffreysakora@gmail.com',
+            'clear': 'CLEAR'
+        };
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const cmd = input.value.toLowerCase().trim();
+                if (cmd === 'clear') {
+                    output.innerHTML = '';
+                } else {
+                    const response = commands[cmd] || `ERROR: '${cmd}' not recognized.`;
+                    const p = document.createElement('p');
+                    p.innerHTML = `<span class="text-white">$ ${cmd}</span><br>${response}`;
+                    output.appendChild(p);
+                }
+                input.value = '';
+                output.scrollTop = output.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
