@@ -3,20 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakora's Space</title>
+    <title>SYS-ADMIN // SECURITY ARCHITECT</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #030303; font-family: 'Plus Jakarta Sans', sans-serif; color: #94a3b8; }
+        body { background-color: #030303;
+               font-family: 'Plus Jakarta Sans', sans-serif; 
+               color: #94a3b8; 
+               background-image: radial-gradient(circle at 50% 50%, #111 0%, #020202 100%);}
         .mono { font-family: 'Fira Code', monospace; }
+        /* The Precision Viewport Logic */
+        .viewport { 
+            position: relative; 
+            overflow: hidden; 
+            background: #000;
+            border-radius: 12px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
         .scanning-animation {
             background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
             background-size: 200% 100%;
             animation: scan 2s infinite;
         }
         @keyframes scan { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        #personal-bio { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s ease; }
+        #personal-bio.open { max-height: 250px; opacity: 1; margin-top: 1rem; }
         .panel { background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); }
         .glow-emerald:hover { border-color: #10b981; box-shadow: 0 0 20px rgba(16, 185, 129, 0.1); }
+        
+        /* Custom scrollbar for terminal */
+        #terminal-output::-webkit-scrollbar { width: 4px; }
+        #terminal-output::-webkit-scrollbar-track { background: transparent; }
+        #terminal-output::-webkit-scrollbar-thumb { background: #10b98133; border-radius: 10px; }
+         .card:hover .viewport { flex-grow: 1.5; }
+        .card:hover .cert-img { transform: scale(1.1); filter: grayscale(0); opacity: 1; }
+
+         /* Unified Portal Styling */
+        .badge-portal {
+            width: 100%; height: 140px; overflow: hidden;
+            background: rgba(0,0,0,0.4); border-radius: 1.5rem;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255,255,255,0.05); margin: 1.5rem 0;
+            transition: all 0.5s ease;
+        }
+        .badge-img {
+            height: 75%; object-fit: contain; filter: grayscale(1) opacity(0.4);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .group:hover .badge-portal { border-color: rgba(255,255,255,0.15); background: rgba(0,0,0,0.7); }
+        .group:hover .badge-img { filter: grayscale(0) opacity(1); transform: scale(1.1) rotate(2deg); }
+
+        /* Unified Tactical Button */
+        .verify-trigger {
+            position: relative; width: 100%; padding: 14px;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 1rem; overflow: hidden; cursor: pointer;
+            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+        }
+        .verify-trigger::after {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.6s;
+        }
+        .verify-trigger:hover::after { left: 100%; }
+        .verify-trigger:hover { background: rgba(255,255,255,0.07); letter-spacing: 0.1em; }
+
+        .status-dot { width: 6px; height: 6px; border-radius: 50%; margin-right: 10px; }
+    
     </style>
 </head>
 <body class="p-4 lg:p-12">
@@ -43,6 +97,7 @@
             <div class="flex gap-4 mono text-[10px]">
                 <a href="#about" class="px-4 py-2 panel rounded hover:text-white transition">ABOUT</a>
                 <a href="#projects" class="px-4 py-2 panel rounded hover:text-white transition">PROJECTS</a>
+                <a href="#certificates" class="px-4 py-2 panel rounded hover:text-white transition">CERTIFICATES</a>
                 <a href="mailto:geoffreysakora@gmail.com" class="px-4 py-2 bg-emerald-500 text-black font-bold rounded hover:bg-emerald-400 transition">CONTACT</a>
             </div>
         </div>
@@ -57,11 +112,53 @@
                     <div class="w-2 h-2 rounded-full bg-yellow-500/40"></div>
                     <div class="w-2 h-2 rounded-full bg-green-500/40"></div>
                 </div>
-                <div id="terminal-output" class="mono text-[11px] h-48 overflow-y-auto text-emerald-500 space-y-1 mb-4">
-                    </div>
+                <div id="terminal-output" class="mono text-[11px] h-48 overflow-y-auto text-emerald-500 space-y-1 mb-4"></div>
                 <div class="flex mono text-[11px] border-t border-white/5 pt-3">
                     <span class="text-emerald-500 mr-2">$</span>
                     <input type="text" id="terminal-input" placeholder="type 'help'..." class="bg-transparent outline-none text-white w-full">
+                </div>
+            </div>
+
+            <div class="panel p-8 rounded-2xl text-center border-emerald-500/10">
+                <p class="mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 italic">Experience</p>
+                <h2 class="text-6xl font-black text-white stat-glow">6+</h2>
+                <p class="mono text-[16px] mt-4 text-emerald-500/80 uppercase">Months of IT Experience</p>
+            </div>
+            
+            <div class="panel p-6 rounded-lg border-emerald-500/20 bg-emerald-500/5">
+                <a href="SakoraResume.pdf" download class="flex justify-between items-center group">
+                    <div class="mono">
+                        <p class="text-white text-[11px] font-bold">SakoraResume.pdf</p>
+                        <p class="text-emerald-500/60 text-[9px]">VER: 2026.01.30</p>
+                    </div>
+                    <svg class="w-5 h-5 text-emerald-500 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                </a>
+            </div>
+
+            <div class="panel p-8 rounded-2xl text-center border-blue-500/10 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="text-left border-l border-white/10 pl-4">
+                        <p class="text-white font-bold text-lg leading-tight italic">Enterprise Networking</p>
+                        <p class="mono text-[10px] text-zinc-500 mt-1 uppercase">L2/L3 Architecture</p>
+                    </div>
+                    <div class="text-left border-l border-white/10 pl-4">
+                        <p class="text-white font-bold text-lg leading-tight italic">Cloud Security</p>
+                        <p class="mono text-[10px] text-zinc-500 mt-1 uppercase">Governance & IAM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel p-5 rounded-lg border-white/5 bg-white/[0.02]">
+                <h3 class="text-zinc-500 text-[9px] font-bold uppercase tracking-[0.2em] mb-4 mono">External Links</h3>
+                <div class="grid grid-cols-2 gap-3">
+                     <a href="https://linkedin.com/in/geoffrey-sakora-7o7/" target="_blank" class="flex items-center gap-3 p-2 rounded bg-black/40 border border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all group">
+                        <svg class="w-4 h-4 text-zinc-400 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        <span class="mono text-[10px] text-zinc-400 group-hover:text-white">LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/bezosonfleek/" target="_blank" class="flex items-center gap-3 p-2 rounded bg-black/40 border border-white/5 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all group">
+                        <svg class="w-4 h-4 text-zinc-400 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.82 1.102.82 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                        <span class="mono text-[10px] text-zinc-400 group-hover:text-white">GitHub</span>
+                    </a>
                 </div>
             </div>
 
@@ -84,10 +181,11 @@
         <div class="lg:col-span-8 space-y-8">
             
             <section id="about" class="panel p-8 rounded-2xl glow-emerald">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="md:col-span-1">
-                        <div class="w-full aspect-square bg-zinc-800 rounded border border-white/10 grayscale mb-4">
-                            <img src="jeff-passport.jpg" class="w-full h-full object-cover opacity-50">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    
+                    <div class="w-full md:w-48 flex-shrink-0">
+                        <div class="w-full aspect-square bg-zinc-800 rounded border border-white/10 grayscale mb-4 overflow-hidden">
+                            <img src="jeff-passport.jpg" class="w-full h-full object-cover opacity-50" alt="Profile">
                         </div>
                         <div class="mono text-[10px] space-y-1">
                             <p><span class="text-zinc-500">ID:</span> user_777</p>
@@ -95,51 +193,61 @@
                             <p><span class="text-zinc-500">ROLE:</span> SEC_ARCHITECT</p>
                         </div>
                     </div>
-                    <div class="md:col-span-2">
-                        <h2 class="text-white text-3xl font-bold uppercase tracking-tighter mb-4 italic">Mission_Briefing</h2>
-                        <p class="text-sm leading-relaxed mb-4 italic">
-                           I build at the intersection of connectivity and protection. My focus is on the entire lifecycle of a request—from the <b>Network</b> hardware that routes it, to the <b>Cloud</b> instances that process it, and the <b>Cybersecurity concepts</b> that keeps it private. I am currently dedicated to <b>IAM</b> principles and automated scanning to ensure every system is stable, visible, and secure by design.                        </p>
-                        <p class="text-sm leading-relaxed mb-6">
+
+                    <div class="flex-grow w-full">
+                        <h2 class="text-white text-2xl font-black uppercase italic tracking-tighter mb-4">Mission_Briefing</h2>
+                        <p class="text-sm text-zinc-400 leading-relaxed mb-6 max-w-full">
+                            I build at the intersection of connectivity and protection. My focus is on the entire lifecycle of a request—from the Network hardware that routes it, to the Cloud instances that process it,
+                            and the Cybersecurity concepts that keeps it private. I am currently dedicated to IAM principles and automated scanning to ensure every system is stable, visible, and secure by design. 
                             With a background in hybrid-cloud architecture, I focus on securing cloud environments that remain resilient under pressure; I secure their future.
                         </p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="p-3 bg-black/40 rounded border border-white/5">
-                                <p class="text-[10px] font-bold text-emerald-500 uppercase">Networking</p>
-                                <p class="text-[11px]">Linux, VPN Tunnels, SIEM</p>
-                            </div>
-                            <div class="p-3 bg-black/40 rounded border border-white/5">
-                                <p class="text-[10px] font-bold text-blue-500 uppercase">Cloud</p>
-                                <p class="text-[11px]">AWS (VPC, IAM), Azure</p>
-                            </div>
+                        
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <div class="bg-white/5 p-2 rounded border border-white/5 mono text-[9px] text-center uppercase">Network Security</div>
+                            <div class="bg-white/5 p-2 rounded border border-white/5 mono text-[9px] text-center uppercase">Cloud Engineering</div>
+                            <div class="bg-white/5 p-2 rounded border border-white/5 mono text-[9px] text-center uppercase">Cybersecurity</div>
+                        </div>
+
+                        <button onclick="document.getElementById('personal-bio').classList.toggle('open')" class="mt-6 mono text-[10px] text-emerald-500 hover:underline underline-offset-4">
+                            [+] ACCESS_OFF_DUTY_LOGS
+                        </button>
+                        
+                        <div id="personal-bio" class="mono text-[11px] text-zinc-500 italic p-4 bg-zinc-900/50 rounded">
+                            When offline, I’m usually tinkering with hardware in my home lab or exploring the outdoors. I believe security is a mindset that starts with curiosity about how things break.
                         </div>
                     </div>
                 </div>
             </section>
-
+                <header class="max-w-6xl mx-auto mb-16 border-b border-white/5 pb-10">
+                   <h1 class="text-white text-4xl font-black uppercase italic tracking-tighter">Projects</h1>
+                </header>
             <section id="projects" class="panel p-8 rounded-2xl relative bg-gradient-to-br from-zinc-900/50 to-black glow-emerald">
-                <div class="flex justify-between items-start mb-8">
+                
+                <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
                     <div>
-                        <span class="text-emerald-500 mono text-[10px] uppercase font-bold tracking-widest mb-1 block">Active_Tooling</span>
-                        <a href="https://bezosonfleek.github.io/jeffs-car-website/" target="_blank" class="hover:text-emerald-400 transition-colors">
+                        <span class="text-emerald-500 mono text-[10px] uppercase font-bold tracking-widest mb-1 block">Project_1</span>
+                        <a href="https://github.com/bezosonfleek/jeffs-car-website" target="_blank" class="hover:text-emerald-400 transition-colors">
                             <h3 class="text-3xl font-black text-white italic tracking-tighter underline decoration-emerald-500/30">PacketPulse</h3>
                         </a>
                     </div>
-                    <a href="https://bezosonfleek.github.io/jeffs-car-website/" target="_blank" class="px-2 py-1 border border-emerald-500/40 text-emerald-500 mono text-[9px] rounded hover:bg-emerald-500/10 transition-all">LAUNCH_PROJECT</a>
+                    <a href="https://github.com/bezosonfleek/jeffs-car-website" target="_blank" class="px-4 py-2 border border-emerald-500/40 text-emerald-500 mono text-[9px] rounded hover:bg-emerald-500/10 transition-all">LAUNCH_PROJECT</a>
                 </div>
 
-                <p class="text-sm text-zinc-400 mb-8 max-w-xl">
+                <p class="text-sm text-zinc-400 mb-8 max-w-2xl">
                     A multi-threaded Python engine built for deep network enumeration. It automates the discovery of live hosts and performs service fingerprinting across 65,535 ports to identify misconfigurations.
                 </p>
 
-                <div class="bg-black/80 rounded-lg p-5 mono text-[10px] border border-zinc-800 mb-6">
-                    <div class="grid grid-cols-4 border-b border-zinc-800 pb-2 mb-3 text-zinc-500 font-bold uppercase tracking-tighter">
-                        <span>Target_Host</span><span>Port</span><span>Service</span><span>Result</span>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="grid grid-cols-4"><span>10.0.0.122</span><span>22</span><span>SSH</span><span class="text-emerald-500">OPEN</span></div>
-                        <div class="grid grid-cols-4"><span>10.0.0.122</span><span>443</span><span>HTTPS</span><span class="text-emerald-500">OPEN</span></div>
-                        <div class="grid grid-cols-4 text-zinc-600 animate-pulse"><span>10.0.0.125</span><span>3306</span><span>MYSQL</span><span>SCANNING...</span></div>
-                        <div class="grid grid-cols-4 text-zinc-600 animate-pulse"><span>10.0.0.125</span><span>8080</span><span>PROXY</span><span>SCANNING...</span></div>
+                <div class="bg-black/80 rounded-lg p-5 mono text-[10px] border border-zinc-800 mb-6 overflow-x-auto">
+                    <div class="min-w-[400px]">
+                        <div class="grid grid-cols-4 border-b border-zinc-800 pb-2 mb-3 text-zinc-500 font-bold uppercase tracking-tighter">
+                            <span>Target_Host</span><span>Port</span><span>Service</span><span>Result</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="grid grid-cols-4"><span>10.0.0.122</span><span>22</span><span>SSH</span><span class="text-emerald-500">OPEN</span></div>
+                            <div class="grid grid-cols-4"><span>10.0.0.122</span><span>443</span><span>HTTPS</span><span class="text-emerald-500">OPEN</span></div>
+                            <div class="grid grid-cols-4 text-zinc-600 animate-pulse"><span>10.0.0.125</span><span>3306</span><span>MYSQL</span><span>SCANNING...</span></div>
+                            <div class="grid grid-cols-4 text-zinc-600 animate-pulse"><span>10.0.0.125</span><span>8080</span><span>PROXY</span><span>SCANNING...</span></div>
+                        </div>
                     </div>
                 </div>
 
@@ -150,13 +258,44 @@
                 </div>
             </section>
 
+            <header class="max-w-6xl mx-auto mb-16 border-b border-white/5 pb-10">
+        <h1 class="text-white text-4xl font-black uppercase italic tracking-tighter">Credential_Vault</h1>
+        <!--<p class="mono text-[10px] text-zinc-500 mt-2 uppercase tracking-[0.5em]">System_Model: Unified_Glass_v2 // 2026</p>-->
+            </header>
+        
+            <section id="certificates" class="panel p-8 rounded-2xl relative bg-gradient-to-br from-zinc-900/50 to-black glow-emerald">
+        <div class="card bg-white/[0.03] backdrop-blur-xl p-6 rounded-3xl border border-white/10 group transition-all hover:border-pink-500/40">
+            <h3 class="text-white font-bold text-lg">IBM<br>Cloud Computing Fundamentals</h3>
+            <div class="badge-portal"><img src="cloud-computing-fundamentals(IBM)-badge.png" class="badge-img"></div>
+            <button class="verify-trigger text-pink-400">
+                <span class="status-dot bg-pink-500 animate-pulse"></span>
+                <span class="mono text-[10px] font-bold">Open_Cloud_Vault</span>
+            </button>
+        </div>
+
+        <div class="card bg-white/[0.03] backdrop-blur-xl p-6 rounded-3xl border border-white/10 group transition-all hover:border-blue-500/40">
+            <h3 class="text-white font-bold text-lg">Cisco<br>Ethical Hacker</h3>
+            <div class="badge-portal"><img src="ethical-hacker.png" class="badge-img"></div> 
+            <button class="verify-trigger text-blue-400">
+                <span class="status-dot bg-blue-500 animate-pulse"></span>
+                <span class="mono text-[10px] font-bold">Verify_Credential</span>
+            </button>
+        </div>
+
+        <div class="card bg-white/[0.03] backdrop-blur-xl p-6 rounded-3xl border border-white/10 group transition-all hover:border-blue-300/40">
+            <h3 class="text-white font-bold text-lg">Cisco<br>Network Security & Support</h3>
+            <div class="badge-portal"><img src="network-support-and-security-badge.png" class="badge-img"></div>
+            <button class="verify-trigger text-blue-300">
+                <span class="status-dot bg-blue-300 animate-pulse"></span>
+                <span class="mono text-[10px] font-bold">Access_Certificate_Registry</span>
+            </button>
+        </div>
+        </section>
         </div>
     </main>
 
     <footer class="mt-20 py-10 border-t border-white/5 flex flex-col items-center opacity-40 hover:opacity-100 transition">
         <div class="flex gap-8 mono text-[10px] uppercase tracking-[0.3em] mb-4">
-            <a href="https://github.com/bezosonfleek/">Github</a>
-            <a href="https://www.linkedin.com/in/geoffrey-sakora-7o7/">LinkedIn</a>
             <a href="mailto:geoffreysakora@gmail.com">Report_Bug</a>
         </div>
         <p class="mono text-[8px]">0x00FF42 // AUTH_CERT_777_SIGNED</p>
@@ -182,7 +321,7 @@
                 output.appendChild(p);
                 msgIndex++;
                 output.scrollTop = output.scrollHeight;
-                setTimeout(typeInit, 600);
+                setTimeout(typeInit, 400); // Speed up slightly
             }
         }
         typeInit();
@@ -201,7 +340,7 @@
                 const cmd = input.value.toLowerCase().trim();
                 if (cmd === 'clear') {
                     output.innerHTML = '';
-                } else {
+                } else if (cmd !== "") {
                     const response = commands[cmd] || `ERROR: '${cmd}' not recognized.`;
                     const p = document.createElement('p');
                     p.innerHTML = `<span class="text-white">$ ${cmd}</span><br>${response}`;
@@ -213,8 +352,4 @@
         });
     </script>
 </body>
-
 </html>
-
-
-
