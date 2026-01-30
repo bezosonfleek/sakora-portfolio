@@ -1,5 +1,3 @@
-
-    <script>
         const output = document.getElementById('terminal-output');
         const input = document.getElementById('terminal-input');
 
@@ -48,4 +46,3 @@
                 output.scrollTop = output.scrollHeight;
             }
         });
-    </script>
