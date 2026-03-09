@@ -61,15 +61,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Enter') {
             const cmd = input.value.toLowerCase().trim();
             
-            if (cmd === 'clear') {
-                output.innerHTML = '';
-            } else if (cmd !== "") {
-                const response = commands[cmd] || `ERROR: '${cmd}' not recognized.`;
-                const p = document.createElement('p');
-                // Using innerHTML here to allow for the <br> break
-                p.innerHTML = `<span class="text-white">$ ${cmd}</span><br>${response}`;
-                output.appendChild(p);
-            }
+            if (cmd !== '') {
+    const command = commands[cmd];
+    if (!command) {
+        const p = document.createElement('p');
+        p.textContent = `ERROR: '${cmd}' not recognized.`;
+        output.appendChild(p);
+    } else if (command.type === 'clear') {
+        output.innerHTML = '';
+    } else if (command.type === 'text') {
+        const p = document.createElement('p');
+        p.textContent = command.value;
+        output.appendChild(p);
+    } else if (command.type === 'lines') {
+        command.value.forEach(line => {
+            const p = document.createElement('p');
+            p.textContent = line;
+            output.appendChild(p);
+        });
+    }
+}
             
             input.value = '';
             output.scrollTop = output.scrollHeight;
