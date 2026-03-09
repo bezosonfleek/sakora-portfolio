@@ -32,13 +32,30 @@ document.addEventListener('DOMContentLoaded', () => {
     typeInit();
 
     const commands = {
-        'help': 'Available: skills, status, contact, clear',
-        'ls': ' skills  status  contact  clear',
-        'skills': 'Network Configuration, Docker, Cloud, Web Security, Linux, Python',
-        'status': 'System Operational. All nodes green.',
-        'contact': 'Direct Route: geoffreysakora@gmail.com',
-        'clear': 'CLEAR'
-    };
+    'help':    { type: 'text',  value: 'Available: skills, projects, status, contact, clear' },
+    'ls':      { type: 'text',  value: ' skills  projects  status  contact  clear' },
+    'status':  { type: 'text',  value: 'System Operational. All nodes green.' },
+    'contact': { type: 'text',  value: 'Direct Route: geoffreysakora@gmail.com' },
+    'skills': {
+        type: 'lines',
+        value: [
+            '> Network Configuration',
+            '> Docker & Containerisation',
+            '> Cloud Architecture',
+            '> Web Security',
+            '> Linux Administration',
+            '> Python'
+        ]
+    },
+    'projects': {
+        type: 'lines',
+        value: [
+            '[01] PacketPulse — Multi-threaded network enumeration engine',
+            '     https://bezosonfleek.github.io/PacketPulse/'
+        ]
+    },
+    'clear': { type: 'clear' }
+};
 
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
