@@ -251,6 +251,46 @@
                 </div>
             </section>
 
+            <section id="aws-project" class="panel p-8 rounded-2xl relative bg-gradient-to-br from-zinc-900/50 to-black glow-emerald">
+
+    <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
+        <div>
+            <span class="text-emerald-500 mono text-[10px] uppercase font-bold tracking-widest mb-1 block">Project_2</span>
+            <a href="https://github.com/bezosonfleek/" target="_blank" class="hover:text-emerald-400 transition-colors">
+                <h3 class="text-3xl font-black text-white italic tracking-tighter underline decoration-emerald-500/30">AWS Infra Deploy</h3>
+            </a>
+        </div>
+        <span class="px-4 py-2 border border-zinc-700 text-zinc-500 mono text-[9px] rounded">CLOUD_PROJECT</span>
+    </div>
+
+    <p class="text-sm text-zinc-400 mb-8 max-w-2xl">
+        Provisioned a full AWS cloud environment using Terraform as Infrastructure as Code. Built a custom VPC with public/private subnets, deployed static assets to S3, configured a DynamoDB table, and enforced least-privilege access throughout using IAM roles and policies.
+    </p>
+
+    <div class="bg-black/80 rounded-lg p-5 mono text-[10px] border border-zinc-800 mb-6 overflow-x-auto">
+        <div class="min-w-[400px]">
+            <div class="grid grid-cols-4 border-b border-zinc-800 pb-2 mb-3 text-zinc-500 font-bold uppercase tracking-tighter">
+                <span>Resource</span><span>Service</span><span>Region</span><span>Status</span>
+            </div>
+            <div class="space-y-2">
+                <div class="grid grid-cols-4"><span>sakora-vpc</span><span>VPC</span><span>us-east-1</span><span class="text-emerald-500">ACTIVE</span></div>
+                <div class="grid grid-cols-4"><span>sakora-bucket</span><span>S3</span><span>us-east-1</span><span class="text-emerald-500">DEPLOYED</span></div>
+                <div class="grid grid-cols-4"><span>sakora-db</span><span>DynamoDB</span><span>us-east-1</span><span class="text-emerald-500">ACTIVE</span></div>
+                <div class="grid grid-cols-4"><span>sakora-role</span><span>IAM</span><span>global</span><span class="text-emerald-500">ENFORCED</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 text-[10px] mono">
+        <span class="px-2 py-1 bg-white/5 rounded">Terraform</span>
+        <span class="px-2 py-1 bg-white/5 rounded">AWS VPC</span>
+        <span class="px-2 py-1 bg-white/5 rounded">S3</span>
+        <span class="px-2 py-1 bg-white/5 rounded">DynamoDB</span>
+        <span class="px-2 py-1 bg-white/5 rounded">IAM</span>
+    </div>
+
+</section>
+
             <header class="max-w-6xl mx-auto mb-16 border-b border-white/5 pb-10">
         <h1 class="text-white text-4xl font-black uppercase italic tracking-tighter">Credential_Vault</h1>
         <!--<p class="mono text-[10px] text-zinc-500 mt-2 uppercase tracking-[0.5em]">System_Model: Unified_Glass_v2 // 2026</p>-->
