@@ -121,6 +121,77 @@
     </div>
 
 </section>
+            <section id="k8s-project" class="panel p-8 rounded-2xl relative bg-gradient-to-br from-zinc-900/50 to-black glow-emerald mt-8">
+    <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
+        <div>
+            <span class="text-emerald-500 mono text-[10px] uppercase font-bold tracking-widest mb-1 block">Project_3</span>
+            <a href="#" target="_blank" class="hover:text-emerald-400 transition-colors">
+                <h3 class="text-3xl font-black text-white italic tracking-tighter underline decoration-emerald-500/30">KubeSentinel</h3>
+            </a>
+        </div>
+        <a href="#" class="px-4 py-2 border border-emerald-500/40 text-emerald-500 mono text-[9px] rounded hover:bg-emerald-500/10 transition-all">VIEW_YAML_SPECS</a>
+    </div>
+
+    <p class="text-sm text-zinc-400 mb-8 max-w-2xl">
+        Architected a production-ready Kubernetes cluster on AWS EKS. Implemented Horizontal Pod Autoscaling (HPA) to handle traffic surges and configured an NGINX Ingress Controller with TLS termination. Integrated Prometheus for real-time resource monitoring and alerting.
+    </p>
+
+    <div class="bg-black/80 rounded-lg p-5 mono text-[10px] border border-zinc-800 mb-6 overflow-x-auto">
+        <div class="min-w-[400px]">
+            <div class="grid grid-cols-4 border-b border-zinc-800 pb-2 mb-3 text-zinc-500 font-bold uppercase tracking-tighter">
+                <span>Object</span><span>Kind</span><span>Replicas</span><span>Health</span>
+            </div>
+            <div class="space-y-2">
+                <div class="grid grid-cols-4"><span>api-gateway</span><span>Deployment</span><span>3/3</span><span class="text-emerald-500">READY</span></div>
+                <div class="grid grid-cols-4"><span>auth-service</span><span>Pod</span><span>1/1</span><span class="text-emerald-500">RUNNING</span></div>
+                <div class="grid grid-cols-4"><span>db-primary</span><span>StatefulSet</span><span>1/1</span><span class="text-emerald-500">STABLE</span></div>
+                <div class="grid grid-cols-4"><span>nginx-ingress</span><span>Service</span><span>LB-IP</span><span class="text-emerald-500">ONLINE</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 text-[10px] mono">
+        <span class="px-2 py-1 bg-white/5 rounded">Amazon EKS</span>
+        <span class="px-2 py-1 bg-white/5 rounded">Helm</span>
+        <span class="px-2 py-1 bg-white/5 rounded">Prometheus</span>
+        <span class="px-2 py-1 bg-white/5 rounded">Docker</span>
+    </div>
+</section>
+            <section id="security-project" class="panel p-8 rounded-2xl relative bg-gradient-to-br from-zinc-900/50 to-black glow-emerald mt-8">
+    <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
+        <div>
+            <span class="text-emerald-500 mono text-[10px] uppercase font-bold tracking-widest mb-1 block">Project_4</span>
+            <a href="#" target="_blank" class="hover:text-emerald-400 transition-colors">
+                <h3 class="text-3xl font-black text-white italic tracking-tighter underline decoration-emerald-500/30">ZeroTrust-Gate</h3>
+            </a>
+        </div>
+        <a href="#" class="px-4 py-2 border border-emerald-500/40 text-emerald-500 mono text-[9px] rounded hover:bg-emerald-500/10 transition-all">AUDIT_LOGS</a>
+    </div>
+
+    <p class="text-sm text-zinc-400 mb-8 max-w-2xl">
+        Automated incident response system using AWS GuardDuty and Lambda. The engine monitors for unauthorized SSH attempts and automatically revokes IAM credentials and rotates API keys upon detection of suspicious behavior. Built to comply with Kenya Data Protection Act (2019) standards.
+    </p>
+
+    <div class="bg-black/80 rounded-lg p-5 mono text-[10px] border border-zinc-800 mb-6 overflow-x-auto">
+        <div class="min-w-[400px]">
+            <div class="grid grid-cols-4 border-b border-zinc-800 pb-2 mb-3 text-zinc-500 font-bold uppercase tracking-tighter">
+                <span>Threat_Type</span><span>ID</span><span>Action</span><span>Status</span>
+            </div>
+            <div class="space-y-2">
+                <div class="grid grid-cols-4"><span>Brute_Force</span><span>0x882</span><span>IP_Block</span><span class="text-emerald-500">MITIGATED</span></div>
+                <div class="grid grid-cols-4"><span>IAM_Abuse</span><span>0x411</span><span>Revoke_Key</span><span class="text-emerald-500">SUCCESS</span></div>
+                <div class="grid grid-cols-4"><span>Port_Scan</span><span>0x992</span><span>SG_Update</span><span class="text-emerald-500">MITIGATED</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 text-[10px] mono">
+        <span class="px-2 py-1 bg-white/5 rounded">AWS GuardDuty</span>
+        <span class="px-2 py-1 bg-white/5 rounded">Lambda</span>
+        <span class="px-2 py-1 bg-white/5 rounded">CloudTrail</span>
+        <span class="px-2 py-1 bg-white/5 rounded">Python</span>
+    </div>
+</section>
         </div>
     </main>
 
