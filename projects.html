@@ -6,14 +6,15 @@
     <title>Geoffrey Sakora - IT Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="p-4 lg:p-12">
 
     <nav class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mb-12 border-b border-white/10 pb-8 gap-6">
         <div class="flex items-center gap-6">
             <div class="h-14 w-14 bg-emerald-500/10 border border-emerald-500/50 rounded flex items-center justify-center">
-                <svg class="w-7 h-7 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                <svg class="w-7 h-7 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
             </div>
             <div>
                 <h1 class="text-white text-2xl font-black uppercase tracking-tighter">Geoffrey<span class="text-emerald-500">_</span>Sakora</h1>
@@ -21,186 +22,132 @@
             </div>
         </div>
 
-        <div class="flex items-center gap-6 order-last md:order-none">
+        <div class="flex items-center gap-6">
             <div class="text-right hidden sm:block">
-                <p class="mono text-[10px] text-emerald-500 font-bold uppercase tracking-widest">Connection: Encrypted</p>
-                <p class="mono text-[10px] text-zinc-500 uppercase">IP: 104.14.14.x</p>
+                <p class="mono text-[10px] text-emerald-500 font-bold uppercase tracking-widest">Status: Operational</p>
+                <p class="mono text-[10px] text-zinc-500 uppercase">Loc: Nairobi, KE</p>
             </div>
             <div class="h-10 w-10 rounded-full border border-emerald-500/30 flex items-center justify-center">
                 <div class="h-2 w-2 bg-emerald-500 rounded-full animate-ping"></div>
             </div>
             <div class="flex gap-4 mono text-[10px]">
-                <a href="#about" class="px-4 py-2 panel rounded hover:text-white transition">ABOUT</a>
                 <a href="#projects" class="px-4 py-2 panel rounded hover:text-white transition">PROJECTS</a>
-                <a href="#certificates" class="px-4 py-2 panel rounded hover:text-white transition">CERTIFICATES</a>
                 <a href="mailto:geoffreysakora@gmail.com" class="px-4 py-2 bg-emerald-500 text-black font-bold rounded hover:bg-emerald-400 transition">CONTACT</a>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        <div class="lg:col-span-8 space-y-8">
+    <main class="max-w-7xl mx-auto">
+        <header class="mb-12 border-b border-white/5 pb-10">
+            <h1 class="text-white text-4xl font-black uppercase italic tracking-tighter">Mission_Control</h1>
+            <p class="mono text-[10px] text-zinc-500 uppercase tracking-widest mt-2">Core Architectures // Distributed Systems // Cyber Defense</p>
+        </header>
+
+        <div id="projects" class="projects-triple-grid">
             
-                <header class="max-w-6xl mx-auto mb-16 border-b border-white/5 pb-10">
-                   <h1 class="text-white text-4xl font-black uppercase italic tracking-tighter">Projects</h1>
-                </header>
-            <section id="projects" class="panel p-8 rounded-2xl relative bg-gradient-to-br from-zinc-900/50 to-black glow-emerald">
-                
-                <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
-                    <div>
-                        <span class="text-emerald-500 mono text-[10px] uppercase font-bold tracking-widest mb-1 block">Project_1</span>
-                        <a href="https://github.com/bezosonfleek/jeffs-car-website" target="_blank" class="hover:text-emerald-400 transition-colors">
-                            <h3 class="text-3xl font-black text-white italic tracking-tighter underline decoration-emerald-500/30">PacketPulse</h3>
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 px-2 mb-4">
+                    <div class="h-2 w-2 bg-emerald-500 rounded-full"></div>
+                    <h2 class="mono text-[10px] text-white uppercase tracking-[0.3em]">01_Infrastructure</h2>
+                </div>
+
+                <section class="panel panel-card border-infra p-6 rounded-xl glow-emerald">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-emerald-500 mono text-[9px] font-bold uppercase">Ref: TF-VPC-MOD</span>
+                        <a href="https://github.com/bezosonfleek/" target="_blank" class="text-zinc-500 hover:text-white transition-colors">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.412-4.041-1.412-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                         </a>
                     </div>
-                    <a href="https://bezosonfleek.github.io/PacketPulse/" target="_blank" class="px-4 py-2 border border-emerald-500/40 text-emerald-500 mono text-[9px] rounded hover:bg-emerald-500/10 transition-all">LAUNCH_PROJECT</a>
-                </div>
-
-                <p class="text-sm text-zinc-400 mb-8 max-w-2xl">
-                    A multi-threaded Python engine built for deep network enumeration. It automates the discovery of live hosts and performs service fingerprinting across 65,535 ports to identify misconfigurations.
-                </p>
-
-                <div class="bg-black/80 rounded-lg p-5 mono text-[10px] border border-zinc-800 mb-6 overflow-x-auto">
-                    <div class="min-w-[400px]">
-                        <div class="grid grid-cols-4 border-b border-zinc-800 pb-2 mb-3 text-zinc-500 font-bold uppercase tracking-tighter">
-                            <span>Target_Host</span><span>Port</span><span>Service</span><span>Result</span>
+                    <h3 class="text-xl font-black text-white italic mb-3">AWS Infra Deploy</h3>
+                    <p class="text-[11px] text-zinc-400 mb-6 leading-relaxed">Infrastructure as Code (IaC) deployment of high-availability VPCs using Terraform Modules. Includes S3 backend and DynamoDB state locking.</p>
+                    
+                    <div class="bg-black/60 rounded p-3 mono text-[8px] border border-zinc-800 mb-6">
+                        <div class="flex justify-between border-b border-zinc-800 pb-1 mb-2 text-zinc-500 uppercase font-bold">
+                            <span>Resource</span><span>Status</span>
                         </div>
-                        <div class="space-y-2">
-                            <div class="grid grid-cols-4"><span>10.0.0.122</span><span>22</span><span>SSH</span><span class="text-emerald-500">OPEN</span></div>
-                            <div class="grid grid-cols-4"><span>10.0.0.122</span><span>443</span><span>HTTPS</span><span class="text-emerald-500">OPEN</span></div>
-                            <div class="grid grid-cols-4 text-zinc-600 animate-pulse"><span>10.0.0.125</span><span>3306</span><span>MYSQL</span><span>SCANNING...</span></div>
-                            <div class="grid grid-cols-4 text-zinc-600 animate-pulse"><span>10.0.0.125</span><span>8080</span><span>PROXY</span><span>SCANNING...</span></div>
-                        </div>
+                        <div class="flex justify-between"><span>Core_VPC</span><span class="text-emerald-500">ACTIVE</span></div>
+                        <div class="flex justify-between"><span>IAM_Roles</span><span class="text-emerald-500">ENFORCED</span></div>
                     </div>
+
+                    <div class="mt-auto flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-emerald-500/10 text-emerald-500 rounded text-[8px] mono">TERRAFORM</span>
+                        <span class="px-2 py-1 bg-emerald-500/10 text-emerald-500 rounded text-[8px] mono">AWS_VPC</span>
+                    </div>
+                </section>
+            </div>
+
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 px-2 mb-4">
+                    <div class="h-2 w-2 bg-blue-500 rounded-full"></div>
+                    <h2 class="mono text-[10px] text-white uppercase tracking-[0.3em]">02_Cloud_Native</h2>
                 </div>
 
-                <div class="flex flex-wrap gap-2 text-[10px] mono">
-                    <span class="px-2 py-1 bg-white/5 rounded">Scapy</span>
-                    <span class="px-2 py-1 bg-white/5 rounded">Nmap-Engine</span>
-                    <span class="px-2 py-1 bg-white/5 rounded">AsyncIO</span>
+                <section class="panel panel-card border-cloud p-6 rounded-xl glow-blue">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-blue-500 mono text-[9px] font-bold uppercase">Ref: K8S-EKS-01</span>
+                        <span class="px-2 py-0.5 border border-blue-500/30 text-blue-500 mono text-[7px] rounded">STABLE</span>
+                    </div>
+                    <h3 class="text-xl font-black text-white italic mb-3">KubeSentinel</h3>
+                    <p class="text-[11px] text-zinc-400 mb-6 leading-relaxed">Enterprise-grade EKS cluster orchestration with NGINX Ingress Controllers and Prometheus monitoring dashboards.</p>
+                    
+                    <div class="bg-black/60 rounded p-3 mono text-[8px] border border-zinc-800 mb-6">
+                        <div class="flex justify-between border-b border-zinc-800 pb-1 mb-2 text-zinc-500 uppercase font-bold">
+                            <span>Pod_Name</span><span>Health</span>
+                        </div>
+                        <div class="flex justify-between"><span>api-gw</span><span class="text-blue-500">3/3_UP</span></div>
+                        <div class="flex justify-between"><span>auth-srv</span><span class="text-blue-500">1/1_RUN</span></div>
+                    </div>
+
+                    <div class="mt-auto flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-blue-500/10 text-blue-400 rounded text-[8px] mono">KUBERNETES</span>
+                        <span class="px-2 py-1 bg-blue-500/10 text-blue-400 rounded text-[8px] mono">HELM</span>
+                    </div>
+                </section>
+            </div>
+
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 px-2 mb-4">
+                    <div class="h-2 w-2 bg-red-500 rounded-full animate-pulse"></div>
+                    <h2 class="mono text-[10px] text-white uppercase tracking-[0.3em]">03_Security_Ops</h2>
                 </div>
-            </section>
 
-            <section id="aws-project" class="panel p-8 rounded-2xl relative bg-gradient-to-br from-zinc-900/50 to-black glow-emerald">
+                <section class="panel panel-card border-security p-6 rounded-xl glow-red">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-red-500 mono text-[9px] font-bold uppercase">Ref: SEC-SCAN-09</span>
+                        <a href="https://bezosonfleek.github.io/PacketPulse/" target="_blank" class="px-2 py-1 border border-red-500/30 text-red-500 mono text-[7px] rounded hover:bg-red-500/10 transition">LAUNCH_SCAN</a>
+                    </div>
+                    <h3 class="text-xl font-black text-white italic mb-3">PacketPulse</h3>
+                    <p class="text-[11px] text-zinc-400 mb-6 leading-relaxed">Multi-threaded network enumeration engine. Automates live host discovery and service fingerprinting for audit reports.</p>
+                    
+                    <div class="mt-auto flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-red-500/10 text-red-400 rounded text-[8px] mono">PYTHON</span>
+                        <span class="px-2 py-1 bg-red-500/10 text-red-400 rounded text-[8px] mono">SCAPY</span>
+                    </div>
+                </section>
 
-    <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
-        <div>
-            <span class="text-emerald-500 mono text-[10px] uppercase font-bold tracking-widest mb-1 block">Project_2</span>
-            <a href="https://github.com/bezosonfleek/" target="_blank" class="hover:text-emerald-400 transition-colors">
-                <h3 class="text-3xl font-black text-white italic tracking-tighter underline decoration-emerald-500/30">AWS Infra Deploy</h3>
-            </a>
-        </div>
-        <span><a href="projects.html" class="px-4 py-2 border border-zinc-700 text-zinc-500 mono text-[9px] rounded">CLOUD & INFRA PROJECTS</a></span>
-    </div>
-
-    <p class="text-sm text-zinc-400 mb-8 max-w-2xl">
-        Provisioned a full AWS cloud environment using Terraform as Infrastructure as Code. Built a custom VPC with public/private subnets, deployed static assets to S3, configured a DynamoDB table, and enforced least-privilege access throughout using IAM roles and policies.
-    </p>
-
-    <div class="bg-black/80 rounded-lg p-5 mono text-[10px] border border-zinc-800 mb-6 overflow-x-auto">
-        <div class="min-w-[400px]">
-            <div class="grid grid-cols-4 border-b border-zinc-800 pb-2 mb-3 text-zinc-500 font-bold uppercase tracking-tighter">
-                <span>Resource</span><span>Service</span><span>Region</span><span>Status</span>
+                <section class="panel panel-card border-security p-6 rounded-xl glow-red">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-red-500 mono text-[9px] font-bold uppercase">Ref: SEC-AUTO-REMEDIATE</span>
+                    </div>
+                    <h3 class="text-xl font-black text-white italic mb-3">ZeroTrust-Gate</h3>
+                    <p class="text-[11px] text-zinc-400 mb-6 leading-relaxed">Automated SecOps engine using AWS GuardDuty to trigger Lambda remediation during unauthorized credential usage.</p>
+                    
+                    <div class="mt-auto flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-red-500/10 text-red-400 rounded text-[8px] mono">SECOPS</span>
+                        <span class="px-2 py-1 bg-red-500/10 text-red-400 rounded text-[8px] mono">LAMBDA</span>
+                    </div>
+                </section>
             </div>
-            <div class="space-y-2">
-                <div class="grid grid-cols-4"><span>sakora-vpc</span><span>VPC</span><span>us-east-1</span><span class="text-emerald-500">ACTIVE</span></div>
-                <div class="grid grid-cols-4"><span>sakora-bucket</span><span>S3</span><span>us-east-1</span><span class="text-emerald-500">DEPLOYED</span></div>
-                <div class="grid grid-cols-4"><span>sakora-db</span><span>DynamoDB</span><span>us-east-1</span><span class="text-emerald-500">ACTIVE</span></div>
-                <div class="grid grid-cols-4"><span>sakora-role</span><span>IAM</span><span>global</span><span class="text-emerald-500">ENFORCED</span></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex flex-wrap gap-2 text-[10px] mono">
-        <span class="px-2 py-1 bg-white/5 rounded">Terraform</span>
-        <span class="px-2 py-1 bg-white/5 rounded">AWS VPC</span>
-        <span class="px-2 py-1 bg-white/5 rounded">S3</span>
-        <span class="px-2 py-1 bg-white/5 rounded">DynamoDB</span>
-        <span class="px-2 py-1 bg-white/5 rounded">IAM</span>
-    </div>
-
-</section>
-            <section id="k8s-project" class="panel p-8 rounded-2xl relative bg-gradient-to-br from-zinc-900/50 to-black glow-emerald mt-8">
-    <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
-        <div>
-            <span class="text-emerald-500 mono text-[10px] uppercase font-bold tracking-widest mb-1 block">Project_3</span>
-            <a href="#" target="_blank" class="hover:text-emerald-400 transition-colors">
-                <h3 class="text-3xl font-black text-white italic tracking-tighter underline decoration-emerald-500/30">KubeSentinel</h3>
-            </a>
-        </div>
-        <a href="#" class="px-4 py-2 border border-emerald-500/40 text-emerald-500 mono text-[9px] rounded hover:bg-emerald-500/10 transition-all">VIEW_YAML_SPECS</a>
-    </div>
-
-    <p class="text-sm text-zinc-400 mb-8 max-w-2xl">
-        Architected a production-ready Kubernetes cluster on AWS EKS. Implemented Horizontal Pod Autoscaling (HPA) to handle traffic surges and configured an NGINX Ingress Controller with TLS termination. Integrated Prometheus for real-time resource monitoring and alerting.
-    </p>
-
-    <div class="bg-black/80 rounded-lg p-5 mono text-[10px] border border-zinc-800 mb-6 overflow-x-auto">
-        <div class="min-w-[400px]">
-            <div class="grid grid-cols-4 border-b border-zinc-800 pb-2 mb-3 text-zinc-500 font-bold uppercase tracking-tighter">
-                <span>Object</span><span>Kind</span><span>Replicas</span><span>Health</span>
-            </div>
-            <div class="space-y-2">
-                <div class="grid grid-cols-4"><span>api-gateway</span><span>Deployment</span><span>3/3</span><span class="text-emerald-500">READY</span></div>
-                <div class="grid grid-cols-4"><span>auth-service</span><span>Pod</span><span>1/1</span><span class="text-emerald-500">RUNNING</span></div>
-                <div class="grid grid-cols-4"><span>db-primary</span><span>StatefulSet</span><span>1/1</span><span class="text-emerald-500">STABLE</span></div>
-                <div class="grid grid-cols-4"><span>nginx-ingress</span><span>Service</span><span>LB-IP</span><span class="text-emerald-500">ONLINE</span></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex flex-wrap gap-2 text-[10px] mono">
-        <span class="px-2 py-1 bg-white/5 rounded">Amazon EKS</span>
-        <span class="px-2 py-1 bg-white/5 rounded">Helm</span>
-        <span class="px-2 py-1 bg-white/5 rounded">Prometheus</span>
-        <span class="px-2 py-1 bg-white/5 rounded">Docker</span>
-    </div>
-</section>
-            <section id="security-project" class="panel p-8 rounded-2xl relative bg-gradient-to-br from-zinc-900/50 to-black glow-emerald mt-8">
-    <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
-        <div>
-            <span class="text-emerald-500 mono text-[10px] uppercase font-bold tracking-widest mb-1 block">Project_4</span>
-            <a href="#" target="_blank" class="hover:text-emerald-400 transition-colors">
-                <h3 class="text-3xl font-black text-white italic tracking-tighter underline decoration-emerald-500/30">ZeroTrust-Gate</h3>
-            </a>
-        </div>
-        <a href="#" class="px-4 py-2 border border-emerald-500/40 text-emerald-500 mono text-[9px] rounded hover:bg-emerald-500/10 transition-all">AUDIT_LOGS</a>
-    </div>
-
-    <p class="text-sm text-zinc-400 mb-8 max-w-2xl">
-        Automated incident response system using AWS GuardDuty and Lambda. The engine monitors for unauthorized SSH attempts and automatically revokes IAM credentials and rotates API keys upon detection of suspicious behavior. Built to comply with Kenya Data Protection Act (2019) standards.
-    </p>
-
-    <div class="bg-black/80 rounded-lg p-5 mono text-[10px] border border-zinc-800 mb-6 overflow-x-auto">
-        <div class="min-w-[400px]">
-            <div class="grid grid-cols-4 border-b border-zinc-800 pb-2 mb-3 text-zinc-500 font-bold uppercase tracking-tighter">
-                <span>Threat_Type</span><span>ID</span><span>Action</span><span>Status</span>
-            </div>
-            <div class="space-y-2">
-                <div class="grid grid-cols-4"><span>Brute_Force</span><span>0x882</span><span>IP_Block</span><span class="text-emerald-500">MITIGATED</span></div>
-                <div class="grid grid-cols-4"><span>IAM_Abuse</span><span>0x411</span><span>Revoke_Key</span><span class="text-emerald-500">SUCCESS</span></div>
-                <div class="grid grid-cols-4"><span>Port_Scan</span><span>0x992</span><span>SG_Update</span><span class="text-emerald-500">MITIGATED</span></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex flex-wrap gap-2 text-[10px] mono">
-        <span class="px-2 py-1 bg-white/5 rounded">AWS GuardDuty</span>
-        <span class="px-2 py-1 bg-white/5 rounded">Lambda</span>
-        <span class="px-2 py-1 bg-white/5 rounded">CloudTrail</span>
-        <span class="px-2 py-1 bg-white/5 rounded">Python</span>
-    </div>
-</section>
         </div>
     </main>
 
     <footer class="mt-20 py-10 border-t border-white/5 flex flex-col items-center opacity-40 hover:opacity-100 transition">
         <div class="flex gap-8 mono text-[10px] uppercase tracking-[0.3em] mb-4">
-            <a href="mailto:geoffreysakora@gmail.com">Report_Bug</a>
+            <a href="mailto:geoffreysakora@gmail.com">Contact_Admin</a>
+            <a href="#">Github_Main</a>
         </div>
-        <p class="mono text-[8px]">0x00FF42 // AUTH_CERT_777_SIGNED</p>
+        <p class="mono text-[8px]">GEOFFREY_SAKORA // BUILD_V1.2.0 // 2026_NBO</p>
     </footer>
-    <script src="script.js"></script>
+
 </body>
 </html>
