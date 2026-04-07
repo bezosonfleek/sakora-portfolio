@@ -23,7 +23,7 @@
   .col-head { padding: 20px 24px 18px; border-bottom: 1px solid rgba(255,255,255,0.04); position: relative; overflow: hidden; }
   .col-head::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; }
   .col-cloud::after  { background: linear-gradient(90deg, transparent, #3b82f6, transparent); }
-  .col-infra::after  { background: linear-gradient(90deg, transparent, #10b981, transparent); }
+  .col-security::after { background: linear-gradient(90deg, transparent, #f43f5e, transparent); }
   .col-home::after   { background: linear-gradient(90deg, transparent, #a855f7, transparent); }
 
   .col-label { font-family: 'Fira Code', monospace; font-size: 8px; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
@@ -125,9 +125,9 @@
   </a>
   <div class="mono text-[9px] text-zinc-600 uppercase tracking-widest hidden sm:block">Geoffrey<span class="text-emerald-500">_</span>Sakora // Project Archive</div>
   <div class="flex gap-4 mono text-[9px]">
-    <a href="#cloud" class="text-zinc-600 hover:text-blue-400 transition uppercase tracking-widest">Cloud</a>
-    <a href="#infra" class="text-zinc-600 hover:text-emerald-400 transition uppercase tracking-widest">Infra</a>
-    <a href="#home" class="text-zinc-600 hover:text-purple-400 transition uppercase tracking-widest">Home Lab</a>
+    <a href="#cloud"     class="text-zinc-600 hover:text-blue-400 transition uppercase tracking-widest">Cloud</a>
+    <a href="#security"  class="text-zinc-600 hover:text-rose-400 transition uppercase tracking-widest">Security</a>
+    <a href="#home"      class="text-zinc-600 hover:text-purple-400 transition uppercase tracking-widest">Home Lab</a>
   </div>
 </nav>
 
@@ -141,7 +141,7 @@
         <h1 class="text-white text-3xl font-black uppercase italic tracking-tighter">Mission<span class="text-emerald-500">_</span>Log</h1>
       </div>
       <div class="flex gap-8 mono text-[10px]">
-        <div class="text-center"><div class="text-white font-bold text-2xl">4</div><div class="text-zinc-600 uppercase tracking-widest text-[8px] mt-1">Projects</div></div>
+        <div class="text-center"><div class="text-white font-bold text-2xl">5</div><div class="text-zinc-600 uppercase tracking-widest text-[8px] mt-1">Projects</div></div>
         <div class="text-center"><div class="text-white font-bold text-2xl">3</div><div class="text-zinc-600 uppercase tracking-widest text-[8px] mt-1">Categories</div></div>
         <div class="text-center"><div class="text-emerald-500 font-bold text-2xl">3</div><div class="text-zinc-600 uppercase tracking-widest text-[8px] mt-1">Certs</div></div>
       </div>
@@ -242,70 +242,115 @@
               </div>
             </div>
             <div class="flex gap-2 pt-1" onclick="event.stopPropagation()">
-              <a href="https://github.com/bezosonfleek/AWS-Cloud-Projects" target="_blank" class="proj-link ghost">GitHub →</a>
+              <a href="https://github.com/bezosonfleek" target="_blank" class="proj-link ghost">GitHub →</a>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ═══ INFRASTRUCTURE COLUMN ═══ -->
-    <div class="proj-col col-infra" id="infra">
+    <!-- ═══ SECURITY COLUMN ═══ -->
+    <div class="proj-col col-security" id="security">
       <div class="col-head">
-        <div class="col-label"><div class="col-dot" style="background:#10b981;"></div><span style="color:#10b981;">Infrastructure</span></div>
-        <div class="col-title">Infra</div>
-        <div class="col-sub">AD, SIEM (Wazuh), and a minimal Kubernetes cluster on bare metal.</div>
+        <div class="col-label"><div class="col-dot" style="background:#f43f5e;"></div><span style="color:#f43f5e;">Security</span></div>
+        <div class="col-title">Security</div>
+        <div class="col-sub">Wazuh SIEM for threat detection and VM isolation via Linux bridges.</div>
       </div>
 
-      <!-- AD + SIEM + K8s -->
+      <!-- Wazuh SIEM -->
       <div class="proj-entry" onclick="toggle(this)">
         <div class="entry-name">
-          Enterprise Infra Stack
+          Wazuh SIEM
           <div class="chev"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></div>
         </div>
-        <p class="entry-desc">Active Directory domain with GPO policy, Wazuh SIEM for log monitoring and alerting, and a minimal Kubernetes cluster for container orchestration.</p>
+        <p class="entry-desc">Full SIEM deployment — Wazuh agents on Windows and Linux endpoints, real-time alerting on auth events, and custom detection rules tuned against lab attack simulations.</p>
         <div class="stack-wrap">
-          <span class="stack-pill">Active Directory</span><span class="stack-pill">Wazuh SIEM</span><span class="stack-pill">Kubernetes</span><span class="stack-pill">GPO</span><span class="stack-pill">Docker</span>
+          <span class="stack-pill">Wazuh</span><span class="stack-pill">Elastic Stack</span><span class="stack-pill">Filebeat</span><span class="stack-pill">Sysmon</span><span class="stack-pill">Windows Event Log</span>
         </div>
         <div class="entry-detail">
           <div class="detail-wrap">
             <div>
               <div class="d-label">// Status</div>
               <div class="meta-panel">
-                <div class="meta-row"><span class="meta-key">Active Dir</span><span style="color:#10b981;display:flex;align-items:center;gap:5px;"><span class="s-dot green"></span>Online</span></div>
-                <div class="meta-row"><span class="meta-key">Wazuh SIEM</span><span style="color:#f59e0b;display:flex;align-items:center;gap:5px;"><span class="s-dot yellow"></span>Monitoring</span></div>
-                <div class="meta-row"><span class="meta-key">Kubernetes</span><span style="color:#60a5fa;display:flex;align-items:center;gap:5px;"><span class="s-dot blue"></span>Running</span></div>
+                <div class="meta-row"><span class="meta-key">Platform</span><span class="meta-val">Linux</span></div>
+                <div class="meta-row"><span class="meta-key">Agents</span><span class="meta-val">Win + Linux</span></div>
+                <div class="meta-row"><span class="meta-key">Status</span><span style="color:#f59e0b;display:flex;align-items:center;gap:5px;"><span class="s-dot yellow"></span>Monitoring</span></div>
               </div>
             </div>
             <div>
               <div class="d-label">// What I Built</div>
               <div class="step-list">
-                <div class="step-item"><span class="step-n">01</span><span class="step-text"><strong>Active Directory domain</strong> — Windows Server DC, OUs, GPOs for password policy, desktop lockdowns, software restrictions.</span></div>
-                <div class="step-item"><span class="step-n">02</span><span class="step-text"><strong>Wazuh SIEM stack</strong> — log forwarding from AD, dashboards for auth events and failed logins, alert rules for suspicious patterns.</span></div>
-                <div class="step-item"><span class="step-n">03</span><span class="step-text"><strong>Kubernetes cluster</strong> — minimal kubeadm setup, namespace isolation, basic workload scheduling and pod networking.</span></div>
-                <div class="step-item"><span class="step-n">04</span><span class="step-text"><strong>Attack & defend simulations</strong> — brute force, lateral movement, observing SIEM detection and tuning alert rules.</span></div>
+                <div class="step-item"><span class="step-n">01</span><span class="step-text"><strong>Wazuh manager + Elastic Stack</strong> — deployed on Ubuntu, integrated with Elasticsearch and Kibana for dashboards.</span></div>
+                <div class="step-item"><span class="step-n">02</span><span class="step-text"><strong>Agent deployment</strong> — Wazuh agents on Windows (with Sysmon) and Linux endpoints forwarding all logs to manager.</span></div>
+                <div class="step-item"><span class="step-n">03</span><span class="step-text"><strong>Custom detection rules</strong> — XML rules for brute force, lateral movement, and privilege escalation patterns.</span></div>
+                <div class="step-item"><span class="step-n">04</span><span class="step-text"><strong>Active response</strong> — automated firewall blocks triggered on high-severity SSH brute force alerts.</span></div>
               </div>
             </div>
             <div>
-              <div class="d-label">// Terminal</div>
+              <div class="d-label">// Alert Feed</div>
               <div class="mini-term">
-                <div><span class="cmd">$ kubectl get nodes</span></div>
-                <div><span class="ok">control-plane &nbsp;Ready &nbsp;master</span></div>
-                <div><span class="ok">worker-01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ready &nbsp;worker</span></div>
-                <div><span class="dim">---</span></div>
                 <div><span class="cmd">$ wazuh-logtest --alert-level 7</span></div>
-                <div><span class="warn">ALERT: Multiple failed SSH logins ⚠</span></div>
+                <div><span class="warn">ALERT 10: Multiple failed SSH logins on 10.0.0.15 ⚠</span></div>
+                <div><span class="warn">ALERT 12: Mimikatz signature on WIN-DC01 ⚠</span></div>
+                <div><span class="ok">INFO: 4624 Logon — user sakora — ALLOWED</span></div>
               </div>
             </div>
             <div>
               <div class="d-label">// Challenges & Learnings</div>
               <div class="cl-box ch"><div class="cl-label">Challenges</div>
-                <div class="cl-item"><strong>AD DNS Issues</strong>Domain joins failing because client DNS pointed to ISP, not the DC. Fixed via DNS forwarding.</div>
-                <div class="cl-item"><strong>SIEM Log Noise</strong>Raw Windows event forwarding generated thousands of low-value events — required filter tuning.</div>
+                <div class="cl-item"><strong>Log Noise Volume</strong>Raw Windows event forwarding too verbose — required Sysmon config tuning and custom rule filters.</div>
+                <div class="cl-item"><strong>Sysmon Config</strong>Default config too broad — adopted a community config and trimmed further for lab-scale volumes.</div>
               </div>
               <div class="cl-box ln"><div class="cl-label">Learnings</div>
-                <div class="cl-item"><strong>AD & Enterprise Security</strong>Building from scratch revealed how much of Windows security sits on AD — GPOs, Kerberos, delegation.</div>
-                <div class="cl-item"><strong>Detection Engineering</strong>Writing SIEM alert rules taught how defenders think and how attackers stay below detection thresholds.</div>
+                <div class="cl-item"><strong>Detection Engineering</strong>Writing custom rules taught how defenders model attacker behaviour and what makes a good signal.</div>
+                <div class="cl-item"><strong>Log Pipeline Internals</strong>End-to-end understanding of event flow: endpoint → Filebeat → Wazuh → Elastic.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VM Isolation -->
+      <div class="proj-entry" onclick="toggle(this)">
+        <div class="entry-name">
+          VM Isolation
+          <div class="chev"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></div>
+        </div>
+        <p class="entry-desc">Network-isolated VMs using Linux bridges — dedicated bridge segments per traffic role with iptables DROP rules enforcing strict inter-segment isolation for safe lab simulations.</p>
+        <div class="stack-wrap">
+          <span class="stack-pill">Linux Bridges</span><span class="stack-pill">KVM/QEMU</span><span class="stack-pill">iptables</span><span class="stack-pill">netplan</span><span class="stack-pill">ip link</span>
+        </div>
+        <div class="entry-detail">
+          <div class="detail-wrap">
+            <div>
+              <div class="d-label">// Network Map</div>
+              <div class="mini-term" style="overflow-x:auto;">
+                <div style="min-width:240px;">
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid rgba(255,255,255,0.04);padding-bottom:4px;margin-bottom:6px;color:#27272a;text-transform:uppercase;letter-spacing:0.1em;font-size:7px;"><span>Bridge</span><span>VMs</span><span>Role</span></div>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:3px;"><span>br-mgmt</span><span>dc, siem</span><span class="ok">Management</span></div>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:3px;"><span>br-lab</span><span>workloads</span><span class="ok">Lab Net</span></div>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);"><span>br-isolated</span><span>malware</span><span class="warn">Air-Gap</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="d-label">// What I Built</div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-n">01</span><span class="step-text"><strong>Linux bridge topology</strong> — named bridges per traffic role: management, lab, and isolated/air-gap segments.</span></div>
+                <div class="step-item"><span class="step-n">02</span><span class="step-text"><strong>iptables isolation rules</strong> — explicit DROP rules on FORWARD chain blocking all inter-bridge traffic.</span></div>
+                <div class="step-item"><span class="step-n">03</span><span class="step-text"><strong>Air-gapped malware segment</strong> — br-isolated has no upstream route, safe for running malware samples.</span></div>
+                <div class="step-item"><span class="step-n">04</span><span class="step-text"><strong>Verification testing</strong> — confirmed isolation with ping/traceroute and Wireshark packet captures.</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="d-label">// Challenges & Learnings</div>
+              <div class="cl-box ch"><div class="cl-label">Challenges</div>
+                <div class="cl-item"><strong>Bridge Forwarding Default</strong>Linux bridges forward between all interfaces by default — had to explicitly DROP on FORWARD chain per segment pair.</div>
+                <div class="cl-item"><strong>Persistent Rules</strong>iptables rules don't survive reboot — resolved with iptables-persistent and systemd service ordering.</div>
+              </div>
+              <div class="cl-box ln"><div class="cl-label">Learnings</div>
+                <div class="cl-item"><strong>Linux Networking Internals</strong>Hands-on with bridges, namespaces, and iptables gave far deeper understanding than docs or simulators.</div>
+                <div class="cl-item"><strong>Defence by Design</strong>Designing network topology before deploying VMs is far easier than retrofitting isolation after the fact.</div>
               </div>
             </div>
           </div>
@@ -318,39 +363,83 @@
       <div class="col-head">
         <div class="col-label"><div class="col-dot" style="background:#a855f7;"></div><span style="color:#a855f7;">Home Lab</span></div>
         <div class="col-title">Home Lab</div>
-        <div class="col-sub">VM isolation with Linux bridges and VM provisioning automated via Terraform.</div>
+        <div class="col-sub">Enterprise infra simulation and VM provisioning automated with Terraform.</div>
       </div>
 
-      <!-- VM Isolation + Automation -->
+      <!-- Enterprise Infra Stack -->
       <div class="proj-entry" onclick="toggle(this)">
         <div class="entry-name">
-          VM Isolation & Automation
+          Enterprise Infra Stack
           <div class="chev"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></div>
         </div>
-        <p class="entry-desc">Network-isolated virtual machines using Linux bridges for traffic segmentation, with Terraform automating the entire VM provisioning lifecycle.</p>
+        <p class="entry-desc">Active Directory domain with GPO enforcement and a minimal Kubernetes cluster — simulating an on-prem enterprise environment for IAM, policy management, and container orchestration practice.</p>
         <div class="stack-wrap">
-          <span class="stack-pill">Linux Bridges</span><span class="stack-pill">KVM/QEMU</span><span class="stack-pill">Terraform</span><span class="stack-pill">libvirt</span><span class="stack-pill">netplan</span>
+          <span class="stack-pill">Active Directory</span><span class="stack-pill">Kubernetes</span><span class="stack-pill">GPO</span><span class="stack-pill">kubeadm</span><span class="stack-pill">Windows Server</span>
         </div>
         <div class="entry-detail">
           <div class="detail-wrap">
             <div>
-              <div class="d-label">// Network Map</div>
-              <div class="mini-term" style="overflow-x:auto;">
-                <div style="min-width:240px;">
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid rgba(255,255,255,0.04);padding-bottom:4px;margin-bottom:6px;color:#27272a;text-transform:uppercase;letter-spacing:0.1em;font-size:7px;"><span>Bridge</span><span>VMs</span><span>Role</span></div>
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:3px;"><span>br-mgmt</span><span>dc, siem</span><span class="ok">Management</span></div>
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:3px;"><span>br-lab</span><span>workloads</span><span class="ok">Lab Net</span></div>
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);"><span>br-isolated</span><span>malware</span><span class="warn">Isolated</span></div>
-                </div>
+              <div class="d-label">// Status</div>
+              <div class="meta-panel">
+                <div class="meta-row"><span class="meta-key">Active Dir</span><span style="color:#10b981;display:flex;align-items:center;gap:5px;"><span class="s-dot green"></span>Online</span></div>
+                <div class="meta-row"><span class="meta-key">Kubernetes</span><span style="color:#60a5fa;display:flex;align-items:center;gap:5px;"><span class="s-dot blue"></span>Running</span></div>
+                <div class="meta-row"><span class="meta-key">Domain</span><span class="meta-val">sakora.lab</span></div>
               </div>
             </div>
             <div>
               <div class="d-label">// What I Built</div>
               <div class="step-list">
-                <div class="step-item"><span class="step-n">01</span><span class="step-text"><strong>Linux bridge topology</strong> — multiple named bridges per traffic role, no forwarding between isolated segments.</span></div>
-                <div class="step-item"><span class="step-n">02</span><span class="step-text"><strong>Terraform + libvirt provider</strong> — declarative VM definitions: CPU, RAM, disk, bridge attachment, cloud-init.</span></div>
-                <div class="step-item"><span class="step-n">03</span><span class="step-text"><strong>Cloud-init provisioning</strong> — hostname, SSH keys, user accounts injected at first boot automatically.</span></div>
-                <div class="step-item"><span class="step-n">04</span><span class="step-text"><strong>Snapshot-based lab resets</strong> — clean state for each simulation run without reprovisioning from scratch.</span></div>
+                <div class="step-item"><span class="step-n">01</span><span class="step-text"><strong>Active Directory domain</strong> — Windows Server DC, OUs structured by department, GPOs for password policy and desktop lockdowns.</span></div>
+                <div class="step-item"><span class="step-n">02</span><span class="step-text"><strong>Domain-joined workstations</strong> — Windows VMs joined to the domain, policy applied at login, users managed via AD Users & Computers.</span></div>
+                <div class="step-item"><span class="step-n">03</span><span class="step-text"><strong>Kubernetes cluster (kubeadm)</strong> — minimal single control-plane, Flannel CNI, namespace isolation, basic workload scheduling.</span></div>
+                <div class="step-item"><span class="step-n">04</span><span class="step-text"><strong>Attack & defend simulations</strong> — brute force, lateral movement, and privilege escalation exercises against the AD environment.</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="d-label">// Terminal</div>
+              <div class="mini-term">
+                <div><span class="cmd">$ kubectl get nodes</span></div>
+                <div><span class="ok">k8s-ctrl &nbsp;&nbsp;Ready &nbsp;control-plane</span></div>
+                <div><span class="ok">k8s-wkr1 &nbsp;&nbsp;Ready &nbsp;worker</span></div>
+                <div><span class="dim">---</span></div>
+                <div><span class="cmd">PS> Get-ADUser -Filter * | Select Name</span></div>
+                <div><span class="ok">Administrator, g.sakora, svc_backup</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="d-label">// Challenges & Learnings</div>
+              <div class="cl-box ch"><div class="cl-label">Challenges</div>
+                <div class="cl-item"><strong>AD DNS Issues</strong>Domain joins failing because client DNS pointed to ISP, not the DC. Fixed via DNS forwarding on the DC.</div>
+                <div class="cl-item"><strong>K8s CNI Conflicts</strong>CNI plugin conflicts during kubeadm init — resolved by pre-pulling images and setting the correct pod CIDR.</div>
+              </div>
+              <div class="cl-box ln"><div class="cl-label">Learnings</div>
+                <div class="cl-item"><strong>AD & Enterprise Security</strong>Building from scratch revealed how much of Windows security sits on AD — GPOs, Kerberos, and delegation.</div>
+                <div class="cl-item"><strong>Kubernetes Internals</strong>Manual bootstrapping gave far deeper understanding of control plane components than managed K8s ever would.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VM Automation -->
+      <div class="proj-entry" onclick="toggle(this)">
+        <div class="entry-name">
+          VM Automation
+          <div class="chev"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></div>
+        </div>
+        <p class="entry-desc">Entire VM lifecycle managed as code — Terraform with the libvirt provider declaratively provisions KVM VMs, injects cloud-init config at boot, and tears down cleanly for repeatable lab resets.</p>
+        <div class="stack-wrap">
+          <span class="stack-pill">Terraform</span><span class="stack-pill">libvirt</span><span class="stack-pill">cloud-init</span><span class="stack-pill">KVM/QEMU</span><span class="stack-pill">virsh</span>
+        </div>
+        <div class="entry-detail">
+          <div class="detail-wrap">
+            <div>
+              <div class="d-label">// What I Built</div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-n">01</span><span class="step-text"><strong>Terraform + libvirt provider</strong> — declarative VM definitions: vCPU, RAM, disk image, bridge attachment, and cloud-init volume.</span></div>
+                <div class="step-item"><span class="step-n">02</span><span class="step-text"><strong>Cloud-init provisioning</strong> — hostname, SSH keys, user accounts, and packages injected at first boot without manual steps.</span></div>
+                <div class="step-item"><span class="step-n">03</span><span class="step-text"><strong>Modular VM definitions</strong> — reusable Terraform modules for different VM roles (DC, workstation, SIEM) with variable-driven config.</span></div>
+                <div class="step-item"><span class="step-n">04</span><span class="step-text"><strong>Snapshot-based lab resets</strong> — destroy and reprovision the full lab in under two minutes from a clean baseline.</span></div>
               </div>
             </div>
             <div>
@@ -365,6 +454,7 @@
 &nbsp;&nbsp;<span class="fn">network_interface</span> {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">bridge</span> = <span class="str">"br-lab"</span><br>
 &nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="fn">cloudinit</span> = <span class="fn">libvirt_cloudinit_disk.ci.id</span><br>
 }
                 </div>
               </div>
@@ -372,70 +462,18 @@
             <div>
               <div class="d-label">// Challenges & Learnings</div>
               <div class="cl-box ch"><div class="cl-label">Challenges</div>
-                <div class="cl-item"><strong>Bridge Forwarding Rules</strong>Default Linux bridge forwarded everything — had to explicitly disable inter-bridge routing via iptables.</div>
-                <div class="cl-item"><strong>Cloud-init Race Conditions</strong>Network not ready before cloud-init ran — fixed with systemd dependency ordering.</div>
+                <div class="cl-item"><strong>Cloud-init Race Conditions</strong>Network not ready before cloud-init ran — fixed with systemd dependency ordering in the unit file.</div>
+                <div class="cl-item"><strong>libvirt Provider Quirks</strong>Volume and domain resources needed explicit dependency ordering — depends_on required in several places.</div>
               </div>
               <div class="cl-box ln"><div class="cl-label">Learnings</div>
-                <div class="cl-item"><strong>Linux Networking Internals</strong>Hands-on with bridges, namespaces, and iptables gave a much deeper understanding than docs alone.</div>
-                <div class="cl-item"><strong>IaC for Home Labs</strong>Treating VMs as code means reproducible environments — destroy and reprovision in seconds.</div>
+                <div class="cl-item"><strong>IaC for Home Labs</strong>Treating VMs as code means fully reproducible environments — destroy and reprovision the entire lab in seconds.</div>
+                <div class="cl-item"><strong>cloud-init Internals</strong>Understanding user-data, meta-data, and network-config gave much more control over first-boot state.</div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- PacketPulse -->
-      <div class="proj-entry" onclick="toggle(this)">
-        <div class="entry-name">
-          PacketPulse
-          <div class="chev"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></div>
-        </div>
-        <p class="entry-desc">Multi-threaded Python engine for deep network enumeration — live host discovery and service fingerprinting across all 65,535 ports.</p>
-        <div class="stack-wrap">
-          <span class="stack-pill">Python</span><span class="stack-pill">Scapy</span><span class="stack-pill">AsyncIO</span><span class="stack-pill">Nmap Engine</span>
-        </div>
-        <div class="entry-detail">
-          <div class="detail-wrap">
-            <div>
-              <div class="d-label">// Live Output</div>
-              <div class="mini-term">
-                <div><span class="cmd">$ python packetpulse.py --target 10.0.0.0/24</span></div>
-                <div><span class="dim">Initialising sweep on 256 hosts...</span></div>
-                <div><span class="ok">10.0.0.122:22 &nbsp;&nbsp;SSH &nbsp;&nbsp;OPEN</span></div>
-                <div><span class="ok">10.0.0.122:443 &nbsp;HTTPS OPEN</span></div>
-                <div><span class="warn">10.0.0.125:3306 MYSQL EXPOSED ⚠</span></div>
-                <div><span class="dim">Scan complete. Report saved to output.json</span></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// Code</div>
-              <div class="code-block">
-                <div class="code-header"><div class="code-dots"><span style="background:#ef4444;opacity:0.4"></span><span style="background:#f59e0b;opacity:0.4"></span><span style="background:#22c55e;opacity:0.4"></span></div><span class="code-lang">packetpulse.py</span></div>
-                <div class="code-body">
-<span class="kw">async def</span> <span class="fn">scan_port</span>(host, port):<br>
-&nbsp;&nbsp;<span class="kw">try</span>:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;reader, writer = <span class="kw">await</span> <span class="fn">asyncio.open_connection</span>(host, port)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;banner = <span class="kw">await</span> <span class="fn">asyncio.wait_for</span>(reader.<span class="fn">read</span>(<span class="val">1024</span>), timeout=<span class="val">2</span>)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> { <span class="str">"port"</span>: port, <span class="str">"status"</span>: <span class="str">"open"</span> }<br>
-&nbsp;&nbsp;<span class="kw">except</span>: <span class="kw">return</span> <span class="val">None</span>
-                </div>
-              </div>
-            </div>
-            <div class="flex gap-2 pt-1" onclick="event.stopPropagation()">
-              <a href="https://github.com/bezosonfleek/PacketPulse" target="_blank" class="proj-link ghost">GitHub →</a>
-              <a href="https://bezosonfleek.github.io/PacketPulse/" target="_blank" class="proj-link primary">Live Demo →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CTF -->
-      <div class="incoming-entry">
-        <svg class="w-8 h-8 text-zinc-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-        <p class="mono text-[8px] text-zinc-700 uppercase tracking-widest">CTF Write-Ups</p>
-        <p class="text-zinc-700 text-[11px] leading-relaxed">TryHackMe & HackTheBox walkthroughs. Documentation in progress.</p>
-        <a href="https://github.com/bezosonfleek" target="_blank" class="proj-link ghost mt-1" style="font-size:8px;">Watch on GitHub</a>
-      </div>
     </div>
 
   </div>
