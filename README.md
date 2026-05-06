@@ -1,1 +1,3 @@
 # Sakora's-Portfolio
+
+Sharing my passion with you...
