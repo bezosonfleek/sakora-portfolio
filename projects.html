@@ -1,500 +1,1250 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects — Geoffrey Sakora</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<title>Geoffrey Sakora — Cloud & Security Portfolio</title>
+<meta name="description" content="Geoffrey Sakora — Network & Security Specialist, Nairobi, Kenya.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  body { background-color: #050508; font-family: 'Syne', sans-serif; color: #94a3b8; }
-  .mono { font-family: 'Fira Code', monospace; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* Top scanner bar */
-  .scan-bar { height: 1px; background: linear-gradient(90deg, transparent, rgba(16,185,129,0.5), transparent); background-size: 200% 100%; animation: scan 3s infinite; }
-  @keyframes scan { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+  :root {
+    --bg:             #0c0e14;
+    --surface:        #161a27;
+    --surface2:       #1e2335;
+    --border:         #252d42;
+    --border-light:   #2d3650;
+    --text:           #e2e8f0;
+    --muted:          #718096;
+    --faint:          #4a5568;
+    --fainter:        #2d3748;
+    --accent:         #7b42f6;
+    --accent-dim:     rgba(123,66,246,0.06);
+    --accent-border:  rgba(123,66,246,0.28);
+    --accent-glow:    rgba(123,66,246,0.15);
+  }
 
-  /* Column layout grid */
-  .col-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.04); border-radius: 16px; overflow: hidden; }
+  html { scroll-behavior: smooth; }
 
-  /* Each column */
-  .proj-col { background: #050508; display: flex; flex-direction: column; }
-  .col-head { padding: 20px 24px 18px; border-bottom: 1px solid rgba(255,255,255,0.04); position: relative; overflow: hidden; }
-  .col-head::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; }
-  .col-cloud::after  { background: linear-gradient(90deg, transparent, #3b82f6, transparent); }
-  .col-security::after { background: linear-gradient(90deg, transparent, #f43f5e, transparent); }
-  .col-home::after   { background: linear-gradient(90deg, transparent, #a855f7, transparent); }
+  body {
+    font-family: 'DM Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
 
-  .col-label { font-family: 'Fira Code', monospace; font-size: 8px; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-  .col-dot { width: 6px; height: 6px; border-radius: 1px; flex-shrink: 0; }
-  .col-title { font-size: 22px; font-weight: 800; color: #fff; line-height: 1.1; }
-  .col-sub { font-size: 11px; color: #334155; margin-top: 6px; line-height: 1.6; }
+  /* ── TOP HEADER BAR ── */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
 
-  /* Project entries inside a column */
-  .proj-entry { padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.03); cursor: pointer; transition: background 0.2s; position: relative; }
-  .proj-entry:last-child { border-bottom: none; }
-  .proj-entry:hover { background: rgba(255,255,255,0.02); }
-  .proj-entry.open { background: rgba(255,255,255,0.02); }
+  .site-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
 
-  .entry-name { font-size: 15px; font-weight: 700; color: #e2e8f0; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
-  .entry-desc { font-size: 11px; line-height: 1.7; color: #334155; margin-bottom: 10px; }
-  .stack-wrap { display: flex; flex-wrap: wrap; gap: 4px; }
-  .stack-pill { font-family: 'Fira Code', monospace; font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 7px; border: 1px solid rgba(255,255,255,0.06); color: #3f3f46; border-radius: 2px; }
+  .site-logo {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--text);
+    text-transform: uppercase;
+  }
 
-  /* Expand chevron */
-  .chev { width: 20px; height: 20px; border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .chev svg { transition: transform 0.3s; color: #3f3f46; }
-  .proj-entry.open .chev svg { transform: rotate(180deg); color: #64748b; }
+  .site-tag {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--faint);
+    border-left: 1px solid var(--border);
+    padding-left: 16px;
+  }
 
-  /* Expandable detail */
-  .entry-detail { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.5s cubic-bezier(0.23,1,0.32,1), opacity 0.3s; }
-  .proj-entry.open .entry-detail { max-height: 3000px; opacity: 1; }
-  .detail-wrap { border-top: 1px solid rgba(255,255,255,0.04); margin-top: 14px; padding-top: 14px; display: flex; flex-direction: column; gap: 14px; }
+  .site-header-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
 
-  .d-label { font-family: 'Fira Code', monospace; font-size: 7px; color: #27272a; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 6px; }
+  .site-header-right a {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .site-header-right a:hover { color: var(--accent); }
 
-  /* Mini terminal */
-  .mini-term { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.04); border-radius: 6px; padding: 10px 12px; font-family: 'Fira Code', monospace; font-size: 8px; line-height: 2; overflow-x: auto; }
-  .mini-term .cmd { color: #10b981; } .mini-term .ok { color: #34d399; } .mini-term .warn { color: #f59e0b; } .mini-term .dim { color: #27272a; }
+  .header-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #48bb78;
+    border-left: 1px solid var(--border);
+    padding-left: 16px;
+  }
 
-  /* Code block */
-  .code-block { background: #020203; border: 1px solid rgba(255,255,255,0.04); border-radius: 6px; overflow: hidden; }
-  .code-header { display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.01); }
-  .code-dots { display: flex; gap: 4px; } .code-dots span { width: 6px; height: 6px; border-radius: 50%; }
-  .code-lang { font-family: 'Fira Code', monospace; font-size: 7px; color: #27272a; letter-spacing: 0.15em; text-transform: uppercase; }
-  .code-body { padding: 10px 12px; font-family: 'Fira Code', monospace; font-size: 8.5px; line-height: 1.9; overflow-x: auto; color: #94a3b8; }
-  .kw{color:#10b981;} .str{color:#fbbf24;} .cm{color:#27272a;font-style:italic;} .fn{color:#60a5fa;} .val{color:#f472b6;}
+  .header-status-dot {
+    width: 5px; height: 5px;
+    background: #48bb78;
+    border-radius: 50%;
+    animation: blink 1.5s infinite;
+  }
 
-  /* Steps */
-  .step-list { display: flex; flex-direction: column; gap: 7px; }
-  .step-item { display: flex; gap: 8px; align-items: flex-start; }
-  .step-n { font-family: 'Fira Code', monospace; font-size: 8px; color: #10b981; width: 18px; flex-shrink: 0; padding-top: 1px; }
-  .step-text { font-size: 11px; line-height: 1.65; color: #334155; }
-  .step-text strong { color: #64748b; font-weight: 600; }
+  /* ── MAIN LAYOUT ── */
+  .main-layout {
+    display: flex;
+    flex: 1;
+    gap: 0;
+    padding: 32px 40px;
+    gap: 32px;
+    align-items: flex-start;
+    min-height: calc(100vh - 52px);
+  }
 
-  /* CL */
-  .cl-box { padding: 10px 12px; border-radius: 6px; margin-bottom: 8px; }
-  .cl-box.ch { background: rgba(244,63,94,0.03); border: 1px solid rgba(244,63,94,0.08); }
-  .cl-box.ln { background: rgba(16,185,129,0.03); border: 1px solid rgba(16,185,129,0.08); }
-  .cl-label { font-family: 'Fira Code', monospace; font-size: 7px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; }
-  .cl-box.ch .cl-label { color: #f43f5e; } .cl-box.ln .cl-label { color: #10b981; }
-  .cl-item { font-size: 10px; line-height: 1.65; color: #334155; margin-bottom: 5px; }
-  .cl-item strong { color: #4b5563; display: block; font-size: 10px; margin-bottom: 1px; }
+  /* ── LEFT: MATRIX CARD ── */
+  .matrix-card {
+    flex: 0 0 300px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: sticky;
+    top: 84px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
 
-  /* Meta panel */
-  .meta-panel { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.04); border-radius: 6px; padding: 8px 10px; font-family: 'Fira Code', monospace; font-size: 8px; display: flex; flex-direction: column; gap: 4px; }
-  .meta-row { display: flex; justify-content: space-between; gap: 10px; }
-  .meta-key { color: #27272a; } .meta-val { color: #64748b; }
-  .s-dot { width: 4px; height: 4px; border-radius: 50%; display: inline-block; animation: blink 1.5s infinite; }
-  .s-dot.green{background:#10b981;} .s-dot.yellow{background:#f59e0b;} .s-dot.blue{background:#60a5fa;}
+  .card-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot.r { background: #fc5c65; }
+  .dot.y { background: #fed330; }
+  .dot.g { background: #26de81; }
+
+  .bar-label {
+    font-size: 9px;
+    color: var(--faint);
+    letter-spacing: 0.1em;
+    margin-left: 6px;
+    text-transform: uppercase;
+  }
+
+  .matrix-header {
+    padding: 20px 18px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .matrix-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--text);
+    letter-spacing: 0.03em;
+  }
+
+  .matrix-subtitle {
+    font-size: 9px;
+    color: var(--faint);
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+  }
+
+  /* ── SKILL GRID ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .skill-item {
+    background: var(--bg);
+    padding: 18px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: 0;
+    position: relative;
+  }
+
+  .skill-item:hover { background: var(--surface2); }
+
+  .skill-item.active {
+    background: var(--accent-dim);
+    box-shadow: inset 0 0 0 1px var(--accent-border);
+  }
+
+  .skill-item.active .skill-name { color: var(--accent); }
+
+  .skill-icon {
+    width: 28px; height: 28px;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+  }
+
+  .skill-name {
+    font-size: 10px;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--text);
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .skill-version {
+    font-size: 8px;
+    color: var(--faint);
+    letter-spacing: 0.06em;
+  }
+
+  /* Category divider in grid */
+  .skill-category-label {
+    grid-column: 1 / -1;
+    background: var(--surface);
+    padding: 6px 14px;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--faint);
+    border-top: 1px solid var(--border);
+  }
+
+  .matrix-footer {
+    background: var(--surface);
+    padding: 10px 16px;
+    font-size: 9px;
+    color: var(--faint);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .footer-dot {
+    width: 5px; height: 5px;
+    background: #48bb78;
+    border-radius: 50%;
+    animation: blink 1.5s infinite;
+  }
+
+  /* ── RIGHT: CONTENT CANVAS ── */
+  .content-canvas {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+  }
+
+  /* ── BADGE ── */
+  .panel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    border-radius: 999px;
+    padding: 5px 14px;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    width: fit-content;
+    transition: all 0.3s ease;
+  }
+
+  .blink {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    animation: blink 1.4s ease-in-out infinite;
+  }
+
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
 
-  /* Links */
-  .proj-link { font-family: 'Fira Code', monospace; font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 10px; border-radius: 4px; text-decoration: none; transition: all 0.2s; }
-  .proj-link.primary { background: #10b981; color: #000; font-weight: 600; }
-  .proj-link.primary:hover { background: #34d399; }
-  .proj-link.ghost { border: 1px solid rgba(255,255,255,0.08); color: #3f3f46; }
-  .proj-link.ghost:hover { border-color: rgba(255,255,255,0.16); color: #64748b; }
+  /* ── DETAIL PANEL ── */
+  .detail-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
 
-  /* Screenshots */
-  .ss-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-  .ss-ph { background: rgba(15,23,42,0.5); border: 1px dashed rgba(255,255,255,0.05); border-radius: 4px; min-height: 70px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
-  .ss-ph span { font-family: 'Fira Code', monospace; font-size: 7px; color: #1e293b; text-transform: uppercase; letter-spacing: 0.08em; text-align: center; padding: 0 6px; }
+  .detail-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    transition: background 0.4s;
+  }
 
-  /* Incoming */
-  .incoming-entry { padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.03); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 8px; min-height: 120px; }
-  .incoming-entry:last-child { border-bottom: none; }
+  .panel-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--text);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
 
-  /* Fade in */
-  .fade-in { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .panel-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 18px;
+  }
 
-  @media (max-width: 900px) {
-    .col-grid { grid-template-columns: 1fr; }
+  .panel-desc strong {
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    color: var(--muted);
+    background: var(--bg);
+    transition: border-color 0.2s;
+  }
+
+  .tag:hover { border-color: var(--accent-border); }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .stat-cell {
+    background: var(--surface);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: background 0.2s;
+  }
+
+  .stat-cell:hover { background: var(--surface2); }
+
+  .stat-label {
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .stat-val {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  .stat-sub {
+    font-size: 9px;
+    color: var(--faint);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── TERMINAL PANEL ── */
+  .terminal-panel {
+    background: #080a10;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
+  }
+
+  .terminal-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+    font-size: 9px;
+    color: var(--faint);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.08em;
+  }
+
+  .term-dots { display: flex; gap: 5px; }
+  .term-dot { width: 7px; height: 7px; border-radius: 50%; }
+  .term-dot.r { background: #fc5c65; opacity: 0.6; }
+  .term-dot.y { background: #fed330; opacity: 0.6; }
+  .term-dot.g { background: #26de81; opacity: 0.6; }
+
+  .terminal-body { padding: 20px; min-height: 160px; }
+
+  .t-line {
+    font-size: 11px;
+    line-height: 2;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+
+  .prompt { color: var(--accent); flex-shrink: 0; font-size: 11px; }
+  .t-cmd { color: #e2e8f0; }
+  .t-comment { color: var(--faint); font-style: italic; }
+  .t-ok { color: #48bb78; }
+  .t-warn { color: #f6ad55; }
+
+  /* ── STEPS PANEL ── */
+  .steps-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .steps-header {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--faint);
+    background: var(--surface2);
+  }
+
+  .steps-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+
+  .step-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border: 1px solid var(--accent-border);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    margin-top: 1px;
+  }
+
+  .step-text {
+    font-size: 11px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .step-text strong { color: var(--text); font-weight: 500; }
+
+  /* ── CL GRID ── */
+  .cl-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .cl-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .cl-box.ch { border-color: rgba(252,92,101,0.2); }
+  .cl-box.ln { border-color: rgba(72,187,120,0.2); }
+
+  .cl-box-label {
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .cl-box.ch .cl-box-label { color: #fc5c65; }
+  .cl-box.ln .cl-box-label { color: #48bb78; }
+
+  .cl-item {
+    font-size: 10px;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .cl-item strong {
+    color: var(--text);
+    display: block;
+    font-weight: 500;
+    font-size: 10px;
+    margin-bottom: 2px;
+  }
+
+  /* ── LINKS ROW ── */
+  .links-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .proj-link {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .proj-link.solid {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .proj-link.solid:hover { opacity: 0.85; }
+
+  .proj-link.outline {
+    border: 1px solid var(--border-light);
+    color: var(--muted);
+  }
+
+  .proj-link.outline:hover { border-color: var(--accent-border); color: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .main-layout { flex-direction: column; padding: 20px 20px; }
+    .matrix-card { flex: none; width: 100%; position: static; }
+    .skills-grid { grid-template-columns: repeat(3, 1fr); }
+    .cl-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr; }
+    .site-tag { display: none; }
   }
 </style>
 </head>
-<body class="p-4 lg:p-10">
+<body>
 
-<!-- NAV -->
-<nav class="max-w-7xl mx-auto flex justify-between items-center mb-10 border-b border-white/5 pb-6">
-  <a href="index.html" class="flex items-center gap-3 group">
-    <svg class="w-4 h-4 text-emerald-500 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M19 12H5m7-7-7 7 7 7"/></svg>
-    <span class="mono text-[10px] text-zinc-500 group-hover:text-emerald-500 transition uppercase tracking-widest">Back to Portfolio</span>
-  </a>
-  <div class="mono text-[9px] text-zinc-600 uppercase tracking-widest hidden sm:block">Geoffrey<span class="text-emerald-500">_</span>Sakora // Project Archive</div>
-  <div class="flex gap-4 mono text-[9px]">
-    <a href="#cloud"     class="text-zinc-600 hover:text-blue-400 transition uppercase tracking-widest">Cloud</a>
-    <a href="#security"  class="text-zinc-600 hover:text-rose-400 transition uppercase tracking-widest">Security</a>
-    <a href="#home"      class="text-zinc-600 hover:text-purple-400 transition uppercase tracking-widest">Home Lab</a>
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <div class="site-header-left">
+    <span class="site-logo">Geoffrey Sakora</span>
+    <span class="site-tag">Cloud · Network · Security</span>
   </div>
-</nav>
+  <div class="site-header-right">
+    <a href="index.html">Portfolio</a>
+    <a href="projects.html">All Projects</a>
+    <a href="mailto:geoffreysakora@gmail.com">Contact</a>
+    <div class="header-status">
+      <div class="header-status-dot"></div>
+      Open to Work
+    </div>
+  </div>
+</header>
 
-<!-- PAGE HEADER -->
-<div class="max-w-7xl mx-auto mb-10 fade-in">
-  <div style="background:rgba(10,12,20,0.8);border:1px solid rgba(255,255,255,0.05);border-radius:14px;overflow:hidden;position:relative;">
-    <div class="scan-bar"></div>
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-6">
-      <div>
-        <span class="mono text-[9px] text-emerald-500/40 uppercase tracking-widest mb-1 block">Project Archive // Click any entry to expand</span>
-        <h1 class="text-white text-3xl font-black uppercase italic tracking-tighter">Mission<span class="text-emerald-500">_</span>Log</h1>
+<!-- ── MAIN ── -->
+<div class="main-layout">
+
+  <!-- LEFT: MATRIX CARD -->
+  <div class="matrix-card">
+    <div class="card-bar">
+      <span class="dot r"></span>
+      <span class="dot y"></span>
+      <span class="dot g"></span>
+      <span class="bar-label">tech · matrix</span>
+    </div>
+
+    <div class="matrix-header">
+      <h2 class="matrix-title">Geoffrey Sakora</h2>
+      <p class="matrix-subtitle">Select a layer to inspect project telemetry</p>
+    </div>
+
+    <div class="skills-grid">
+
+      <!-- CLOUD & IaC -->
+      <div class="skill-category-label">Cloud & IaC</div>
+
+      <div class="skill-item active" id="btn-terraform" onclick="loadNode('terraform')">
+        <svg class="skill-icon" viewBox="0 0 120 136" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="60,0 120,34 120,102 60,136 0,102 0,34" fill="#7b42f6"/>
+          <polygon points="35,38 35,72 60,86 60,52" fill="white"/>
+          <polygon points="65,52 65,86 90,72 90,38" fill="white"/>
+          <polygon points="35,80 35,98 60,112 60,94" fill="white"/>
+        </svg>
+        <span class="skill-name">Terraform</span>
+        <span class="skill-version">IaC</span>
       </div>
-      <div class="flex gap-8 mono text-[10px]">
-        <div class="text-center"><div class="text-white font-bold text-2xl">5</div><div class="text-zinc-600 uppercase tracking-widest text-[8px] mt-1">Projects</div></div>
-        <div class="text-center"><div class="text-white font-bold text-2xl">3</div><div class="text-zinc-600 uppercase tracking-widest text-[8px] mt-1">Categories</div></div>
-        <div class="text-center"><div class="text-emerald-500 font-bold text-2xl">3</div><div class="text-zinc-600 uppercase tracking-widest text-[8px] mt-1">Certs</div></div>
+
+      <div class="skill-item" id="btn-aws" onclick="loadNode('aws')">
+        <svg class="skill-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15,70 Q60,105 105,70" stroke="#ff9900" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <polygon points="95,72 107,70 102,84" fill="#ff9900"/>
+          <text x="60" y="52" text-anchor="middle" font-family="monospace" font-size="22" font-weight="bold" fill="#ff9900">AWS</text>
+        </svg>
+        <span class="skill-name">AWS</span>
+        <span class="skill-version">Platform</span>
+      </div>
+
+      <div class="skill-item" id="btn-docker" onclick="loadNode('docker')">
+        <svg class="skill-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="50" width="16" height="16" fill="#2496ed" rx="2"/>
+          <rect x="50" y="50" width="16" height="16" fill="#2496ed" rx="2"/>
+          <rect x="70" y="50" width="16" height="16" fill="#2496ed" rx="2"/>
+          <rect x="50" y="30" width="16" height="16" fill="#2496ed" rx="2"/>
+          <path d="M20,75 Q50,95 105,75" stroke="#2496ed" stroke-width="6" fill="none"/>
+        </svg>
+        <span class="skill-name">Docker</span>
+        <span class="skill-version">Container</span>
+      </div>
+
+      <!-- NETWORKING & SECURITY -->
+      <div class="skill-category-label">Network & Security</div>
+
+      <div class="skill-item" id="btn-homelab" onclick="loadNode('homelab')">
+        <svg class="skill-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="35" width="80" height="50" rx="4" fill="none" stroke="#10b981" stroke-width="5"/>
+          <line x1="20" y1="55" x2="100" y2="55" stroke="#10b981" stroke-width="3"/>
+          <circle cx="35" cy="45" r="4" fill="#10b981"/>
+          <circle cx="50" cy="45" r="4" fill="#10b981"/>
+          <rect x="48" y="85" width="24" height="10" rx="2" fill="#10b981"/>
+          <rect x="35" y="95" width="50" height="6" rx="2" fill="#10b981"/>
+        </svg>
+        <span class="skill-name">Home Lab</span>
+        <span class="skill-version">Infra Sim</span>
+      </div>
+
+      <div class="skill-item" id="btn-siem" onclick="loadNode('siem')">
+        <svg class="skill-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="60" width="12" height="40" rx="2" fill="#f6ad55"/>
+          <rect x="28" y="45" width="12" height="55" rx="2" fill="#f6ad55"/>
+          <rect x="46" y="30" width="12" height="70" rx="2" fill="#fc5c65"/>
+          <rect x="64" y="50" width="12" height="50" rx="2" fill="#f6ad55"/>
+          <rect x="82" y="20" width="12" height="80" rx="2" fill="#fc5c65"/>
+          <rect x="100" y="40" width="12" height="60" rx="2" fill="#f6ad55"/>
+          <line x1="5" y1="105" x2="115" y2="105" stroke="#4a5568" stroke-width="2"/>
+        </svg>
+        <span class="skill-name">SIEM</span>
+        <span class="skill-version">Detection</span>
+      </div>
+
+      <div class="skill-item" id="btn-nmap" onclick="loadNode('nmap')">
+        <svg class="skill-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="45" fill="none" stroke="#10b981" stroke-width="3" stroke-dasharray="6 4"/>
+          <circle cx="60" cy="60" r="28" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="4 3"/>
+          <circle cx="60" cy="60" r="12" fill="none" stroke="#10b981" stroke-width="2"/>
+          <circle cx="60" cy="60" r="4" fill="#10b981"/>
+          <line x1="60" y1="60" x2="95" y2="30" stroke="#10b981" stroke-width="2.5"/>
+        </svg>
+        <span class="skill-name">PacketPulse</span>
+        <span class="skill-version">NetSec</span>
+      </div>
+
+      <!-- LANGUAGES & TOOLS -->
+      <div class="skill-category-label">Languages & Tools</div>
+
+      <div class="skill-item" id="btn-python" onclick="loadNode('python')">
+        <svg class="skill-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60,10 C35,10 38,30 38,45 L38,55 L82,55 L82,65 L27,65 C15,65 10,72 10,82 C10,95 20,110 45,110 L60,110 C75,110 82,103 82,90 L82,80 L38,80 L38,70 L82,70 L82,55 L38,55 L38,45 C38,32 45,22 60,22 L78,22 C88,22 92,28 92,35 L92,45 L78,45 C70,45 65,48 65,55 L65,65 L92,65 L92,45 C92,30 88,10 60,10 Z" fill="#3572A5"/>
+          <circle cx="49" cy="38" r="5" fill="white"/>
+          <path d="M60,110 C85,110 82,90 82,75 L82,65 L38,65 L38,75 L93,75 C105,75 110,68 110,58 C110,45 100,30 75,30 L60,30 C45,30 38,37 38,50 L38,60 L82,60 L82,70 L38,70 L38,85 C38,98 45,108 60,110 Z" fill="#FFD43B"/>
+          <circle cx="71" cy="82" r="5" fill="white"/>
+        </svg>
+        <span class="skill-name">Python</span>
+        <span class="skill-version">Scripting</span>
+      </div>
+
+      <div class="skill-item" id="btn-linux" onclick="loadNode('linux')">
+        <svg class="skill-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60,15 C40,15 35,35 35,55 C35,70 42,85 50,95 C45,97 30,100 20,98 C25,105 45,105 55,100 C58,102 62,102 65,100 C75,105 95,105 100,98 C90,100 75,107 70,95 C78,85 85,70 85,55 C85,35 80,15 60,15 Z" fill="#fcfcfc" stroke="#2d3748" stroke-width="4"/>
+          <circle cx="50" cy="45" r="4" fill="#2d3748"/>
+          <circle cx="70" cy="45" r="4" fill="#2d3748"/>
+          <path d="M45,65 Q60,80 75,65" fill="#ff9900"/>
+        </svg>
+        <span class="skill-name">Linux</span>
+        <span class="skill-version">Sysadmin</span>
+      </div>
+
+      <div class="skill-item" id="btn-cicd" onclick="loadNode('cicd')">
+        <svg class="skill-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="20" fill="none" stroke="#4cd137" stroke-width="5"/>
+          <path d="M40,60 C40,48 50,38 62,38" stroke="#4cd137" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <polygon points="62,30 74,38 62,46" fill="#4cd137"/>
+          <path d="M80,60 C80,72 70,82 58,82" stroke="#4cd137" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <polygon points="58,90 46,82 58,74" fill="#4cd137"/>
+        </svg>
+        <span class="skill-name">CI/CD</span>
+        <span class="skill-version">Pipelines</span>
+      </div>
+
+    </div>
+
+    <div class="matrix-footer">
+      <span>bezosonfleek</span>
+      <div class="footer-indicator">
+        <div class="footer-dot"></div>
+        <span>system_active</span>
       </div>
     </div>
+  </div>
+
+  <!-- RIGHT: CONTENT CANVAS -->
+  <div class="content-canvas">
+
+    <div class="panel-badge" id="runtime-badge">
+      <span class="blink"></span>
+      <span id="badge-text">Loading...</span>
+    </div>
+
+    <!-- Stats row -->
+    <div class="stats-row" id="stats-row"></div>
+
+    <!-- Detail panel -->
+    <div class="detail-panel">
+      <h1 class="panel-title" id="node-title"></h1>
+      <p class="panel-desc" id="node-desc"></p>
+      <div class="tags" id="node-tags"></div>
+    </div>
+
+    <!-- Steps -->
+    <div class="steps-panel" id="steps-panel">
+      <div class="steps-header">// What I Built</div>
+      <div class="steps-body" id="node-steps"></div>
+    </div>
+
+    <!-- Challenges + Learnings -->
+    <div class="cl-grid" id="cl-grid"></div>
+
+    <!-- Terminal -->
+    <div class="terminal-panel">
+      <div class="terminal-header">
+        <div class="term-dots">
+          <div class="term-dot r"></div>
+          <div class="term-dot y"></div>
+          <div class="term-dot g"></div>
+        </div>
+        <span id="term-label">bash · session</span>
+        <span>tty1</span>
+      </div>
+      <div class="terminal-body" id="node-terminal"></div>
+    </div>
+
+    <!-- Links -->
+    <div class="links-row" id="node-links"></div>
+
   </div>
 </div>
 
-<main class="max-w-7xl mx-auto fade-in">
-  <div class="col-grid">
-
-    <!-- ═══ CLOUD COLUMN ═══ -->
-    <div class="proj-col col-cloud" id="cloud">
-      <div class="col-head">
-        <div class="col-label"><div class="col-dot" style="background:#3b82f6;"></div><span style="color:#3b82f6;">Cloud</span></div>
-        <div class="col-title">Cloud</div>
-        <div class="col-sub">Fully deployed AWS architecture provisioned end-to-end with Terraform.</div>
-      </div>
-
-      <!-- AWS Infra Deploy -->
-      <div class="proj-entry" onclick="toggle(this)">
-        <div class="entry-name">
-          AWS Infra Deploy
-          <div class="chev"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></div>
-        </div>
-        <p class="entry-desc">Provisioned a full AWS environment — VPC, S3 static deployment, DynamoDB, and least-privilege IAM roles enforced end to end.</p>
-        <div class="stack-wrap">
-          <span class="stack-pill">Terraform</span><span class="stack-pill">AWS VPC</span><span class="stack-pill">S3</span><span class="stack-pill">DynamoDB</span><span class="stack-pill">IAM</span>
-        </div>
-        <div class="entry-detail">
-          <div class="detail-wrap">
-            <div>
-              <div class="d-label">// Meta</div>
-              <div class="meta-panel">
-                <div class="meta-row"><span class="meta-key">Provider</span><span class="meta-val">AWS</span></div>
-                <div class="meta-row"><span class="meta-key">IaC</span><span class="meta-val">Terraform</span></div>
-                <div class="meta-row"><span class="meta-key">Region</span><span class="meta-val">us-east-1</span></div>
-                <div class="meta-row"><span class="meta-key">Status</span><span style="color:#10b981;display:flex;align-items:center;gap:5px;"><span class="s-dot green"></span>Deployed</span></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// Architecture</div>
-              <div class="mini-term" style="overflow-x:auto;">
-                <div style="min-width:240px;">
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid rgba(255,255,255,0.04);padding-bottom:4px;margin-bottom:6px;color:#27272a;text-transform:uppercase;letter-spacing:0.1em;font-size:7px;"><span>Resource</span><span>Service</span><span>Status</span></div>
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:3px;"><span>sakora-vpc</span><span>VPC</span><span class="ok">ACTIVE</span></div>
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:3px;"><span>sakora-bucket</span><span>S3</span><span class="ok">DEPLOYED</span></div>
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:3px;"><span>sakora-db</span><span>DynamoDB</span><span class="ok">ACTIVE</span></div>
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);"><span>sakora-role</span><span>IAM</span><span class="ok">ENFORCED</span></div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// What I Built</div>
-              <div class="step-list">
-                <div class="step-item"><span class="step-n">01</span><span class="step-text"><strong>Initialised Terraform & provider config</strong> — project structure, AWS provider block, target region declared.</span></div>
-                <div class="step-item"><span class="step-n">02</span><span class="step-text"><strong>Built VPC & subnet architecture</strong> — 10.0.0.0/16 CIDR, public/private subnets, Internet Gateway.</span></div>
-                <div class="step-item"><span class="step-n">03</span><span class="step-text"><strong>Deployed static site to S3</strong> — bucket with website hosting, public read policy.</span></div>
-                <div class="step-item"><span class="step-n">04</span><span class="step-text"><strong>Configured DynamoDB</strong> — on-demand billing, point-in-time recovery, scoped to private subnet.</span></div>
-                <div class="step-item"><span class="step-n">05</span><span class="step-text"><strong>Enforced least-privilege IAM</strong> — scoped inline policies, no wildcard permissions.</span></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// Code</div>
-              <div class="code-block">
-                <div class="code-header"><div class="code-dots"><span style="background:#ef4444;opacity:0.4"></span><span style="background:#f59e0b;opacity:0.4"></span><span style="background:#22c55e;opacity:0.4"></span></div><span class="code-lang">iam.tf — Terraform</span></div>
-                <div class="code-body">
-<span class="kw">resource</span> <span class="str">"aws_iam_policy"</span> <span class="str">"s3_policy"</span> {<br>
-&nbsp;&nbsp;<span class="fn">name</span> = <span class="str">"sakora-s3-policy"</span><br>
-&nbsp;&nbsp;<span class="fn">policy</span> = <span class="fn">jsonencode</span>({<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">Statement</span> = [{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">Effect</span>   = <span class="str">"Allow"</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">Action</span>   = [<span class="str">"s3:GetObject"</span>, <span class="str">"s3:PutObject"</span>]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">Resource</span> = <span class="str">"arn:aws:s3:::sakora-bucket/*"</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;}]<br>
-&nbsp;&nbsp;})<br>
-}
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// Screenshots</div>
-              <div class="ss-grid">
-                <div class="ss-ph"><svg class="w-4 h-4 text-zinc-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span>AWS Console — VPC</span></div>
-                <div class="ss-ph"><svg class="w-4 h-4 text-zinc-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2z"/></svg><span>Terraform Apply</span></div>
-                <div class="ss-ph"><svg class="w-4 h-4 text-zinc-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2z"/></svg><span>S3 Static Hosting</span></div>
-                <div class="ss-ph"><svg class="w-4 h-4 text-zinc-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2z"/></svg><span>IAM Policy View</span></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// Challenges & Learnings</div>
-              <div class="cl-box ch"><div class="cl-label">Challenges</div>
-                <div class="cl-item"><strong>IAM Policy Scope Creep</strong>Started with broad ARNs — iterated until permissions matched minimum required per service.</div>
-                <div class="cl-item"><strong>S3 Public Access Blocks</strong>AWS blocks public access by default — had to configure block settings alongside the bucket policy.</div>
-              </div>
-              <div class="cl-box ln"><div class="cl-label">Learnings</div>
-                <div class="cl-item"><strong>IaC Discipline</strong>Every resource in code is tracked, repeatable, and reviewable.</div>
-                <div class="cl-item"><strong>Least Privilege in Practice</strong>Writing scoped IAM policies by hand gave a much deeper understanding of the AWS permission model.</div>
-              </div>
-            </div>
-            <div class="flex gap-2 pt-1" onclick="event.stopPropagation()">
-              <a href="https://github.com/bezosonfleek" target="_blank" class="proj-link ghost">GitHub →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══ SECURITY COLUMN ═══ -->
-    <div class="proj-col col-security" id="security">
-      <div class="col-head">
-        <div class="col-label"><div class="col-dot" style="background:#f43f5e;"></div><span style="color:#f43f5e;">Security</span></div>
-        <div class="col-title">Security</div>
-        <div class="col-sub">Wazuh SIEM for threat detection and VM isolation via Linux bridges.</div>
-      </div>
-
-      <!-- Wazuh SIEM -->
-      <div class="proj-entry" onclick="toggle(this)">
-        <div class="entry-name">
-          Wazuh SIEM
-          <div class="chev"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></div>
-        </div>
-        <p class="entry-desc">Full SIEM deployment — Wazuh agents on Windows and Linux endpoints, real-time alerting on auth events, and custom detection rules tuned against lab attack simulations.</p>
-        <div class="stack-wrap">
-          <span class="stack-pill">Wazuh</span><span class="stack-pill">Elastic Stack</span><span class="stack-pill">Filebeat</span><span class="stack-pill">Sysmon</span><span class="stack-pill">Windows Event Log</span>
-        </div>
-        <div class="entry-detail">
-          <div class="detail-wrap">
-            <div>
-              <div class="d-label">// Status</div>
-              <div class="meta-panel">
-                <div class="meta-row"><span class="meta-key">Platform</span><span class="meta-val">Linux</span></div>
-                <div class="meta-row"><span class="meta-key">Agents</span><span class="meta-val">Win + Linux</span></div>
-                <div class="meta-row"><span class="meta-key">Status</span><span style="color:#f59e0b;display:flex;align-items:center;gap:5px;"><span class="s-dot yellow"></span>Monitoring</span></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// What I Built</div>
-              <div class="step-list">
-                <div class="step-item"><span class="step-n">01</span><span class="step-text"><strong>Wazuh manager + Elastic Stack</strong> — deployed on Ubuntu, integrated with Elasticsearch and Kibana for dashboards.</span></div>
-                <div class="step-item"><span class="step-n">02</span><span class="step-text"><strong>Agent deployment</strong> — Wazuh agents on Windows (with Sysmon) and Linux endpoints forwarding all logs to manager.</span></div>
-                <div class="step-item"><span class="step-n">03</span><span class="step-text"><strong>Custom detection rules</strong> — XML rules for brute force, lateral movement, and privilege escalation patterns.</span></div>
-                <div class="step-item"><span class="step-n">04</span><span class="step-text"><strong>Active response</strong> — automated firewall blocks triggered on high-severity SSH brute force alerts.</span></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// Alert Feed</div>
-              <div class="mini-term">
-                <div><span class="cmd">$ wazuh-logtest --alert-level 7</span></div>
-                <div><span class="warn">ALERT 10: Multiple failed SSH logins on 10.0.0.15 ⚠</span></div>
-                <div><span class="warn">ALERT 12: Mimikatz signature on WIN-DC01 ⚠</span></div>
-                <div><span class="ok">INFO: 4624 Logon — user sakora — ALLOWED</span></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// Challenges & Learnings</div>
-              <div class="cl-box ch"><div class="cl-label">Challenges</div>
-                <div class="cl-item"><strong>Log Noise Volume</strong>Raw Windows event forwarding too verbose — required Sysmon config tuning and custom rule filters.</div>
-                <div class="cl-item"><strong>Sysmon Config</strong>Default config too broad — adopted a community config and trimmed further for lab-scale volumes.</div>
-              </div>
-              <div class="cl-box ln"><div class="cl-label">Learnings</div>
-                <div class="cl-item"><strong>Detection Engineering</strong>Writing custom rules taught how defenders model attacker behaviour and what makes a good signal.</div>
-                <div class="cl-item"><strong>Log Pipeline Internals</strong>End-to-end understanding of event flow: endpoint → Filebeat → Wazuh → Elastic.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- VM Isolation -->
-      <div class="proj-entry" onclick="toggle(this)">
-        <div class="entry-name">
-          VM Isolation
-          <div class="chev"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></div>
-        </div>
-        <p class="entry-desc">Network-isolated VMs using Linux bridges — dedicated bridge segments per traffic role with iptables DROP rules enforcing strict inter-segment isolation for safe lab simulations.</p>
-        <div class="stack-wrap">
-          <span class="stack-pill">Linux Bridges</span><span class="stack-pill">KVM/QEMU</span><span class="stack-pill">iptables</span><span class="stack-pill">netplan</span><span class="stack-pill">ip link</span>
-        </div>
-        <div class="entry-detail">
-          <div class="detail-wrap">
-            <div>
-              <div class="d-label">// Network Map</div>
-              <div class="mini-term" style="overflow-x:auto;">
-                <div style="min-width:240px;">
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid rgba(255,255,255,0.04);padding-bottom:4px;margin-bottom:6px;color:#27272a;text-transform:uppercase;letter-spacing:0.1em;font-size:7px;"><span>Bridge</span><span>VMs</span><span>Role</span></div>
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:3px;"><span>br-mgmt</span><span>dc, siem</span><span class="ok">Management</span></div>
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:3px;"><span>br-lab</span><span>workloads</span><span class="ok">Lab Net</span></div>
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);"><span>br-isolated</span><span>malware</span><span class="warn">Air-Gap</span></div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// What I Built</div>
-              <div class="step-list">
-                <div class="step-item"><span class="step-n">01</span><span class="step-text"><strong>Linux bridge topology</strong> — named bridges per traffic role: management, lab, and isolated/air-gap segments.</span></div>
-                <div class="step-item"><span class="step-n">02</span><span class="step-text"><strong>iptables isolation rules</strong> — explicit DROP rules on FORWARD chain blocking all inter-bridge traffic.</span></div>
-                <div class="step-item"><span class="step-n">03</span><span class="step-text"><strong>Air-gapped malware segment</strong> — br-isolated has no upstream route, safe for running malware samples.</span></div>
-                <div class="step-item"><span class="step-n">04</span><span class="step-text"><strong>Verification testing</strong> — confirmed isolation with ping/traceroute and Wireshark packet captures.</span></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// Challenges & Learnings</div>
-              <div class="cl-box ch"><div class="cl-label">Challenges</div>
-                <div class="cl-item"><strong>Bridge Forwarding Default</strong>Linux bridges forward between all interfaces by default — had to explicitly DROP on FORWARD chain per segment pair.</div>
-                <div class="cl-item"><strong>Persistent Rules</strong>iptables rules don't survive reboot — resolved with iptables-persistent and systemd service ordering.</div>
-              </div>
-              <div class="cl-box ln"><div class="cl-label">Learnings</div>
-                <div class="cl-item"><strong>Linux Networking Internals</strong>Hands-on with bridges, namespaces, and iptables gave far deeper understanding than docs or simulators.</div>
-                <div class="cl-item"><strong>Defence by Design</strong>Designing network topology before deploying VMs is far easier than retrofitting isolation after the fact.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══ HOME LAB COLUMN ═══ -->
-    <div class="proj-col col-home" id="home">
-      <div class="col-head">
-        <div class="col-label"><div class="col-dot" style="background:#a855f7;"></div><span style="color:#a855f7;">Home Lab</span></div>
-        <div class="col-title">Home Lab</div>
-        <div class="col-sub">Enterprise infra simulation and VM provisioning automated with Terraform.</div>
-      </div>
-
-      <!-- Enterprise Infra Stack -->
-      <div class="proj-entry" onclick="toggle(this)">
-        <div class="entry-name">
-          Enterprise Infra Stack
-          <div class="chev"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></div>
-        </div>
-        <p class="entry-desc">Active Directory domain with GPO enforcement and a minimal Kubernetes cluster — simulating an on-prem enterprise environment for IAM, policy management, and container orchestration practice.</p>
-        <div class="stack-wrap">
-          <span class="stack-pill">Active Directory</span><span class="stack-pill">Kubernetes</span><span class="stack-pill">GPO</span><span class="stack-pill">kubeadm</span><span class="stack-pill">Windows Server</span>
-        </div>
-        <div class="entry-detail">
-          <div class="detail-wrap">
-            <div>
-              <div class="d-label">// Status</div>
-              <div class="meta-panel">
-                <div class="meta-row"><span class="meta-key">Active Dir</span><span style="color:#10b981;display:flex;align-items:center;gap:5px;"><span class="s-dot green"></span>Online</span></div>
-                <div class="meta-row"><span class="meta-key">Kubernetes</span><span style="color:#60a5fa;display:flex;align-items:center;gap:5px;"><span class="s-dot blue"></span>Running</span></div>
-                <div class="meta-row"><span class="meta-key">Domain</span><span class="meta-val">sakora.lab</span></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// What I Built</div>
-              <div class="step-list">
-                <div class="step-item"><span class="step-n">01</span><span class="step-text"><strong>Active Directory domain</strong> — Windows Server DC, OUs structured by department, GPOs for password policy and desktop lockdowns.</span></div>
-                <div class="step-item"><span class="step-n">02</span><span class="step-text"><strong>Domain-joined workstations</strong> — Windows VMs joined to the domain, policy applied at login, users managed via AD Users & Computers.</span></div>
-                <div class="step-item"><span class="step-n">03</span><span class="step-text"><strong>Kubernetes cluster (kubeadm)</strong> — minimal single control-plane, Flannel CNI, namespace isolation, basic workload scheduling.</span></div>
-                <div class="step-item"><span class="step-n">04</span><span class="step-text"><strong>Attack & defend simulations</strong> — brute force, lateral movement, and privilege escalation exercises against the AD environment.</span></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// Terminal</div>
-              <div class="mini-term">
-                <div><span class="cmd">$ kubectl get nodes</span></div>
-                <div><span class="ok">k8s-ctrl &nbsp;&nbsp;Ready &nbsp;control-plane</span></div>
-                <div><span class="ok">k8s-wkr1 &nbsp;&nbsp;Ready &nbsp;worker</span></div>
-                <div><span class="dim">---</span></div>
-                <div><span class="cmd">PS> Get-ADUser -Filter * | Select Name</span></div>
-                <div><span class="ok">Administrator, g.sakora, svc_backup</span></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// Challenges & Learnings</div>
-              <div class="cl-box ch"><div class="cl-label">Challenges</div>
-                <div class="cl-item"><strong>AD DNS Issues</strong>Domain joins failing because client DNS pointed to ISP, not the DC. Fixed via DNS forwarding on the DC.</div>
-                <div class="cl-item"><strong>K8s CNI Conflicts</strong>CNI plugin conflicts during kubeadm init — resolved by pre-pulling images and setting the correct pod CIDR.</div>
-              </div>
-              <div class="cl-box ln"><div class="cl-label">Learnings</div>
-                <div class="cl-item"><strong>AD & Enterprise Security</strong>Building from scratch revealed how much of Windows security sits on AD — GPOs, Kerberos, and delegation.</div>
-                <div class="cl-item"><strong>Kubernetes Internals</strong>Manual bootstrapping gave far deeper understanding of control plane components than managed K8s ever would.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- VM Automation -->
-      <div class="proj-entry" onclick="toggle(this)">
-        <div class="entry-name">
-          VM Automation
-          <div class="chev"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></div>
-        </div>
-        <p class="entry-desc">Entire VM lifecycle managed as code — Terraform with the libvirt provider declaratively provisions KVM VMs, injects cloud-init config at boot, and tears down cleanly for repeatable lab resets.</p>
-        <div class="stack-wrap">
-          <span class="stack-pill">Terraform</span><span class="stack-pill">libvirt</span><span class="stack-pill">cloud-init</span><span class="stack-pill">KVM/QEMU</span><span class="stack-pill">virsh</span>
-        </div>
-        <div class="entry-detail">
-          <div class="detail-wrap">
-            <div>
-              <div class="d-label">// What I Built</div>
-              <div class="step-list">
-                <div class="step-item"><span class="step-n">01</span><span class="step-text"><strong>Terraform + libvirt provider</strong> — declarative VM definitions: vCPU, RAM, disk image, bridge attachment, and cloud-init volume.</span></div>
-                <div class="step-item"><span class="step-n">02</span><span class="step-text"><strong>Cloud-init provisioning</strong> — hostname, SSH keys, user accounts, and packages injected at first boot without manual steps.</span></div>
-                <div class="step-item"><span class="step-n">03</span><span class="step-text"><strong>Modular VM definitions</strong> — reusable Terraform modules for different VM roles (DC, workstation, SIEM) with variable-driven config.</span></div>
-                <div class="step-item"><span class="step-n">04</span><span class="step-text"><strong>Snapshot-based lab resets</strong> — destroy and reprovision the full lab in under two minutes from a clean baseline.</span></div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// Code</div>
-              <div class="code-block">
-                <div class="code-header"><div class="code-dots"><span style="background:#ef4444;opacity:0.4"></span><span style="background:#f59e0b;opacity:0.4"></span><span style="background:#22c55e;opacity:0.4"></span></div><span class="code-lang">vm.tf — Terraform/libvirt</span></div>
-                <div class="code-body">
-<span class="kw">resource</span> <span class="str">"libvirt_domain"</span> <span class="str">"lab_vm"</span> {<br>
-&nbsp;&nbsp;<span class="fn">name</span>   = <span class="str">"worker-01"</span><br>
-&nbsp;&nbsp;<span class="fn">vcpu</span>   = <span class="val">2</span><br>
-&nbsp;&nbsp;<span class="fn">memory</span> = <span class="val">2048</span><br>
-&nbsp;&nbsp;<span class="fn">network_interface</span> {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">bridge</span> = <span class="str">"br-lab"</span><br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<span class="fn">cloudinit</span> = <span class="fn">libvirt_cloudinit_disk.ci.id</span><br>
-}
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="d-label">// Challenges & Learnings</div>
-              <div class="cl-box ch"><div class="cl-label">Challenges</div>
-                <div class="cl-item"><strong>Cloud-init Race Conditions</strong>Network not ready before cloud-init ran — fixed with systemd dependency ordering in the unit file.</div>
-                <div class="cl-item"><strong>libvirt Provider Quirks</strong>Volume and domain resources needed explicit dependency ordering — depends_on required in several places.</div>
-              </div>
-              <div class="cl-box ln"><div class="cl-label">Learnings</div>
-                <div class="cl-item"><strong>IaC for Home Labs</strong>Treating VMs as code means fully reproducible environments — destroy and reprovision the entire lab in seconds.</div>
-                <div class="cl-item"><strong>cloud-init Internals</strong>Understanding user-data, meta-data, and network-config gave much more control over first-boot state.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</main>
-
-<footer class="mt-16 py-8 border-t border-white/5 flex flex-col items-center opacity-40 hover:opacity-100 transition max-w-7xl mx-auto">
-  <p class="mono text-[8px]">Geoffrey Sakora // Project Archive // 0x00FF42</p>
-</footer>
-
 <script>
-function toggle(entry) {
-  const isOpen = entry.classList.contains('open');
-  document.querySelectorAll('.proj-entry.open').forEach(e => {
-    if (e !== entry) e.classList.remove('open');
-  });
-  entry.classList.toggle('open', !isOpen);
+const nodes = {
+
+  terraform: {
+    badge: "Cloud Infrastructure · IaC",
+    accent: "#7b42f6",
+    title: "AWS Infrastructure Deploy",
+    desc: "Provisioned a production-ready AWS environment using **Terraform** as Infrastructure as Code. Built a custom **VPC** with public/private subnet isolation, deployed static assets to **S3**, configured a **DynamoDB** table with PITR, and enforced least-privilege access using scoped **IAM** roles — no wildcard permissions.",
+    tags: ["Terraform", "AWS VPC", "S3", "DynamoDB", "IAM", "IaC", "Least Privilege"],
+    stats: [
+      { label: "Resources Provisioned", val: "24+", sub: "Via Terraform" },
+      { label: "IAM Policies", val: "0 ✕", sub: "No wildcards" },
+      { label: "Status", val: "Live", sub: "Deployed" }
+    ],
+    steps: [
+      { n:"01", text: "<strong>Initialised Terraform & provider config</strong> — project structure, AWS provider block, target region." },
+      { n:"02", text: "<strong>VPC & subnet architecture</strong> — 10.0.0.0/16 CIDR, public/private subnets, Internet Gateway." },
+      { n:"03", text: "<strong>S3 static deployment</strong> — bucket with website hosting, public read scoped to assets only." },
+      { n:"04", text: "<strong>DynamoDB table</strong> — on-demand billing, point-in-time recovery, private subnet scoped." },
+      { n:"05", text: "<strong>Least-privilege IAM</strong> — inline policies per service, no wildcard permissions used." }
+    ],
+    cl: {
+      ch: [
+        { h: "IAM Scope Creep", b: "Started with broad ARNs — iterated until permissions matched minimum required per service." },
+        { h: "S3 Access Blocks", b: "AWS blocks public access by default — had to configure block settings alongside bucket policy." }
+      ],
+      ln: [
+        { h: "IaC Discipline", b: "Every resource tracked, repeatable, and reviewable — far better than clicking through the console." },
+        { h: "Least Privilege", b: "Writing scoped policies by hand gave much deeper understanding of the AWS permission model." }
+      ]
+    },
+    terminal: [
+      { type: "cmd",     text: "terraform init && terraform plan -out=tfplan" },
+      { type: "comment", text: "# Acquiring state lock from DynamoDB..." },
+      { type: "comment", text: "# Plan: 24 to add, 0 to change, 0 to destroy ✓" },
+      { type: "cmd",     text: "terraform apply tfplan" },
+      { type: "ok",      text: "Apply complete! Resources: 24 added." }
+    ],
+    links: [
+      { label: "GitHub →", href: "https://github.com/bezosonfleek", cls: "outline" }
+    ]
+  },
+
+  aws: {
+    badge: "Cloud Platform · AWS",
+    accent: "#ff9900",
+    title: "AWS Cloud Architecture",
+    desc: "Core AWS services used across projects — **VPC** for network isolation, **S3** for static hosting and IaC state storage, **DynamoDB** for state locking and data persistence, **IAM** for least-privilege access control, and **CloudFront** for global edge delivery.",
+    tags: ["VPC", "S3", "DynamoDB", "IAM", "CloudFront", "ACM", "Route53"],
+    stats: [
+      { label: "Core Services", val: "7+", sub: "AWS platform" },
+      { label: "Certs", val: "SAA", sub: "In progress" },
+      { label: "Region", val: "us-east-1", sub: "Primary" }
+    ],
+    steps: [
+      { n:"01", text: "<strong>VPC Architecture</strong> — custom VPCs with subnet isolation, route tables, and IGW." },
+      { n:"02", text: "<strong>S3 Deployments</strong> — static hosting, versioning, access control, lifecycle rules." },
+      { n:"03", text: "<strong>DynamoDB</strong> — table design, on-demand billing, PITR, used as Terraform state lock." },
+      { n:"04", text: "<strong>IAM</strong> — roles, policies, users, groups — least privilege enforced throughout." },
+      { n:"05", text: "<strong>CloudFront + ACM</strong> — CDN distribution with automated TLS via Certificate Manager." }
+    ],
+    cl: {
+      ch: [
+        { h: "Default Deny Confusion", b: "AWS IAM deny-by-default behaviour required careful policy scoping per resource." },
+        { h: "CloudFront Cache Invalidation", b: "Stale edge caches required explicit invalidation after S3 deployments." }
+      ],
+      ln: [
+        { h: "Managed Services Mindset", b: "Understanding when to use managed vs self-managed services reduces operational overhead." },
+        { h: "Cost Awareness", b: "On-demand vs provisioned billing models have significant cost implications at scale." }
+      ]
+    },
+    terminal: [
+      { type: "cmd",     text: "aws cloudfront create-invalidation --distribution-id E1A2B3 --paths '/*'" },
+      { type: "comment", text: "# CloudFront edge origin tracking synchronized globally..." },
+      { type: "ok",      text: "SSL/TLS Verification: Validated via ACM Route53 handshake ✓" },
+      { type: "cmd",     text: "aws iam get-policy-version --policy-arn arn:aws:iam::..." },
+      { type: "ok",      text: "Effect: Allow | No wildcard actions found ✓" }
+    ],
+    links: []
+  },
+
+  docker: {
+    badge: "Containerisation · Docker",
+    accent: "#2496ed",
+    title: "Application Containerisation",
+    desc: "Containerised applications using **Docker** with strict, space-efficient multi-stage builds. Stripped development dependencies from production images to reduce attack surfaces, configured **non-root** runtime environments, and decoupled environment variables for portable microservice packages.",
+    tags: ["Multi-Stage Builds", "Non-Root Users", "Layer Caching", "Distroless", "Compose"],
+    stats: [
+      { label: "Image Size Reduction", val: "~60%", sub: "Multi-stage" },
+      { label: "Runtime User", val: "UID 10001", sub: "Non-root" },
+      { label: "Status", val: "Active", sub: "In use" }
+    ],
+    steps: [
+      { n:"01", text: "<strong>Multi-stage Dockerfile</strong> — builder stage with dev deps, production stage stripped clean." },
+      { n:"02", text: "<strong>Non-root user config</strong> — created dedicated UID 10001, dropped all capabilities." },
+      { n:"03", text: "<strong>Layer cache optimisation</strong> — dependency layers ordered for maximum cache reuse." },
+      { n:"04", text: "<strong>Env variable decoupling</strong> — all secrets via env vars, never baked into image." },
+      { n:"05", text: "<strong>Docker Compose</strong> — multi-container local dev environments with service networking." }
+    ],
+    cl: {
+      ch: [
+        { h: "Image Bloat", b: "Initial images were 400MB+ — multi-stage builds reduced this dramatically." },
+        { h: "Permission Errors", b: "Non-root user caused file permission issues — solved with explicit chown in Dockerfile." }
+      ],
+      ln: [
+        { h: "Attack Surface Reduction", b: "Distroless and non-root patterns meaningfully reduce container escape risk." },
+        { h: "Reproducibility", b: "Pinning base image digests ensures deterministic builds across environments." }
+      ]
+    },
+    terminal: [
+      { type: "cmd",     text: "docker image inspect sakora/app:prod --format '{{.Size}}'" },
+      { type: "ok",      text: "Image Size: 24.3 MB (dev layer discarded)" },
+      { type: "cmd",     text: "docker run --user 10001 sakora/app:prod whoami" },
+      { type: "ok",      text: "appuser — non-root confirmed ✓" }
+    ],
+    links: []
+  },
+
+  homelab: {
+    badge: "Home Lab · Enterprise Simulation",
+    accent: "#10b981",
+    title: "Home Lab Infrastructure",
+    desc: "Built a personal lab simulating enterprise infrastructure. Running **managed switching** with VLAN segmentation, **Active Directory** domain with group policy enforcement, a **SIEM** stack for log aggregation and alerting, and a **cloud bridge** for hybrid IAM testing across AWS and IBM Cloud.",
+    tags: ["VLAN", "STP", "Active Directory", "GPO", "SIEM", "Cloud Bridge", "IAM"],
+    stats: [
+      { label: "VLANs", val: "3", sub: "AD / SIEM / Cloud" },
+      { label: "Nodes", val: "4", sub: "All operational" },
+      { label: "Status", val: "Running", sub: "Always on" }
+    ],
+    steps: [
+      { n:"01", text: "<strong>Managed switch & VLAN segmentation</strong> — VLAN 10 (AD), VLAN 20 (SIEM), VLAN 99 (Cloud). Trunk/access ports, STP." },
+      { n:"02", text: "<strong>Active Directory domain</strong> — Windows Server DC, OUs, GPOs for password policy and desktop lockdowns." },
+      { n:"03", text: "<strong>SIEM stack</strong> — log forwarding from AD and switch, dashboards for auth events, alert rules for threat patterns." },
+      { n:"04", text: "<strong>Cloud bridge</strong> — hybrid on-prem/cloud connectivity for IAM role testing across AWS and IBM Cloud." },
+      { n:"05", text: "<strong>Attack & defend simulations</strong> — brute force, lateral movement, privilege escalation — SIEM detection tuning." }
+    ],
+    cl: {
+      ch: [
+        { h: "VLAN Trunk Misconfiguration", b: "Default trunk allowed all VLANs — had to whitelist required ones to enforce segmentation." },
+        { h: "AD DNS Issues", b: "Domain joins failing because client DNS pointed to ISP, not the DC. Fixed via forwarding." },
+        { h: "SIEM Log Noise", b: "Raw Windows event forwarding generated thousands of low-value events — required significant tuning." }
+      ],
+      ln: [
+        { h: "L2 Networking in Practice", b: "Configuring VLANs and STP by hand gave concrete understanding far beyond Packet Tracer." },
+        { h: "Detection Engineering", b: "Writing SIEM alert rules for real attack patterns taught how defenders think." }
+      ]
+    },
+    terminal: [
+      { type: "cmd",     text: "show vlan brief" },
+      { type: "ok",      text: "VLAN 10 DOMAIN   active  Gi0/1" },
+      { type: "ok",      text: "VLAN 20 SIEM     active  Gi0/2" },
+      { type: "ok",      text: "VLAN 99 CLOUD    active  Gi0/3" },
+      { type: "cmd",     text: "Get-ADDomain | Select DNSRoot, DomainMode" },
+      { type: "ok",      text: "DNSRoot: sakora.lab | DomainMode: Windows2016Domain ✓" }
+    ],
+    links: []
+  },
+
+  siem: {
+    badge: "Security Operations · SIEM",
+    accent: "#f6ad55",
+    title: "SIEM & Threat Detection",
+    desc: "Deployed and tuned a **SIEM** stack within the home lab for log aggregation, correlation, and threat alerting. Configured log forwarding from Active Directory and managed switch, built detection rules for attack patterns including brute force, lateral movement, and privilege escalation.",
+    tags: ["Log Aggregation", "Alert Rules", "Event Correlation", "Brute Force Detection", "Auditd"],
+    stats: [
+      { label: "Log Sources", val: "3+", sub: "AD / Switch / Cloud" },
+      { label: "Alert Rules", val: "10+", sub: "Custom tuned" },
+      { label: "Status", val: "Live", sub: "Monitoring" }
+    ],
+    steps: [
+      { n:"01", text: "<strong>Log source configuration</strong> — Windows Event forwarding from AD, syslog from switch." },
+      { n:"02", text: "<strong>Index and parsing rules</strong> — structured ingestion for authentication events (EventID 4624/4625)." },
+      { n:"03", text: "<strong>Alert rule authoring</strong> — detection for 5+ failed logins in 60s, new admin account creation, lateral movement." },
+      { n:"04", text: "<strong>Dashboard build</strong> — authentication timeline, top failed login sources, privilege escalation heatmap." },
+      { n:"05", text: "<strong>Noise reduction</strong> — exclusion filters for service accounts and known-good automation." }
+    ],
+    cl: {
+      ch: [
+        { h: "Log Volume", b: "Unfiltered Windows events generated 50k+ events/hour — aggressive filtering required." },
+        { h: "False Positive Rate", b: "Service accounts triggered brute force rules — had to build allowlist logic." }
+      ],
+      ln: [
+        { h: "Detection Engineering", b: "Writing rules from scratch builds intuition for what attackers try to hide." },
+        { h: "Sigma-style Logic", b: "Structuring detections as reusable, portable rule sets rather than one-off queries." }
+      ]
+    },
+    terminal: [
+      { type: "cmd",     text: "grep EventID=4625 /var/log/winlogbeat/events.log | wc -l" },
+      { type: "ok",      text: "1,247 failed login events in last 24h" },
+      { type: "cmd",     text: "cat alert-rules/brute_force.yml | grep threshold" },
+      { type: "comment", text: "# threshold: count >= 5 within timeframe 60s" },
+      { type: "ok",      text: "Rule active — last triggered: 2 hours ago ✓" }
+    ],
+    links: []
+  },
+
+  nmap: {
+    badge: "Network Security · Python",
+    accent: "#10b981",
+    title: "PacketPulse — Network Scanner",
+    desc: "A multi-threaded Python engine for deep network enumeration. Automates live host discovery and service fingerprinting across all **65,535 ports** using **Scapy** and **AsyncIO**. Built after nmap's raw output proved too difficult to parse programmatically — PacketPulse structures results into actionable **JSON** for pipeline integration.",
+    tags: ["Python", "Scapy", "AsyncIO", "Port Scanning", "JSON Output", "Service Fingerprinting"],
+    stats: [
+      { label: "Port Coverage", val: "65,535", sub: "Full range" },
+      { label: "Concurrency", val: "Async", sub: "AsyncIO" },
+      { label: "Status", val: "Live", sub: "GitHub" }
+    ],
+    steps: [
+      { n:"01", text: "<strong>AsyncIO scanning engine</strong> — concurrent port connections across full 65,535 range." },
+      { n:"02", text: "<strong>Service fingerprinting</strong> — banner grabbing and protocol detection per open port." },
+      { n:"03", text: "<strong>Host discovery</strong> — ICMP + TCP SYN sweep to enumerate live hosts on subnet." },
+      { n:"04", text: "<strong>JSON output pipeline</strong> — structured results for programmatic integration, unlike raw nmap." },
+      { n:"05", text: "<strong>Misconfiguration flagging</strong> — highlights exposed services (MySQL, Redis, etc.) automatically." }
+    ],
+    cl: {
+      ch: [
+        { h: "Rate Limiting & Timeouts", b: "Scanning 65,535 ports naively caused mass timeouts — tuned concurrency limits and per-host timeouts." },
+        { h: "False Open Ports", b: "Some hosts returned SYN-ACK on all ports (honeypots) — added validation step." }
+      ],
+      ln: [
+        { h: "Async I/O for Network Tools", b: "AsyncIO dramatically outperforms threading for concurrent network I/O at scale." },
+        { h: "Scapy Packet Crafting", b: "Low-level packet control allows precise scanning behaviour not possible with subprocess nmap." }
+      ]
+    },
+    terminal: [
+      { type: "cmd",     text: "python packetpulse.py --target 10.0.0.0/24 --ports all" },
+      { type: "comment", text: "# Initialising sweep on 256 hosts..." },
+      { type: "ok",      text: "10.0.0.122:22   SSH   OPEN" },
+      { type: "ok",      text: "10.0.0.122:443  HTTPS OPEN" },
+      { type: "warn",    text: "10.0.0.125:3306 MYSQL EXPOSED ⚠" },
+      { type: "ok",      text: "Scan complete — output.json saved ✓" }
+    ],
+    links: [
+      { label: "GitHub →", href: "https://github.com/bezosonfleek/PacketPulse", cls: "outline" },
+      { label: "Live Demo →", href: "https://bezosonfleek.github.io/PacketPulse/", cls: "solid" }
+    ]
+  },
+
+  python: {
+    badge: "Language · Python",
+    accent: "#3572A5",
+    title: "Python — Scripting & Automation",
+    desc: "Python used across multiple projects — network tooling with **Scapy** and **AsyncIO** (PacketPulse), infrastructure automation scripts, and security tooling. Comfortable with async patterns, socket programming, file I/O, and JSON data pipelines.",
+    tags: ["Python 3", "Scapy", "AsyncIO", "Socket", "JSON", "Scripting", "Automation"],
+    stats: [
+      { label: "Projects", val: "2+", sub: "Active use" },
+      { label: "Key Libraries", val: "Scapy", sub: "AsyncIO" },
+      { label: "Level", val: "Proficient", sub: "Growing" }
+    ],
+    steps: [
+      { n:"01", text: "<strong>AsyncIO</strong> — concurrent I/O patterns for network scanning (PacketPulse)." },
+      { n:"02", text: "<strong>Scapy</strong> — low-level packet crafting, SYN scans, banner grabbing." },
+      { n:"03", text: "<strong>Socket programming</strong> — raw TCP/UDP connections for service fingerprinting." },
+      { n:"04", text: "<strong>JSON pipelines</strong> — structured output for scan results and tool integration." },
+      { n:"05", text: "<strong>Automation scripts</strong> — Bash + Python hybrid automation for lab tasks." }
+    ],
+    cl: {
+      ch: [
+        { h: "Async Complexity", b: "Managing event loops and task cancellation in AsyncIO has a steep learning curve." },
+        { h: "Scapy Privileges", b: "Raw socket operations require elevated privileges — managed with capability dropping." }
+      ],
+      ln: [
+        { h: "Concurrency Patterns", b: "AsyncIO changed how I think about I/O-bound workloads vs CPU-bound ones." },
+        { h: "Low-Level Networking", b: "Crafting packets manually builds intuition for how protocols actually behave." }
+      ]
+    },
+    terminal: [
+      { type: "cmd",     text: "python3 --version && pip list | grep scapy" },
+      { type: "ok",      text: "Python 3.11.4" },
+      { type: "ok",      text: "scapy        2.5.0" },
+      { type: "cmd",     text: "python3 -c \"import asyncio; print(asyncio.version_info)\"" },
+      { type: "ok",      text: "(3, 11, 0, 'final', 0) ✓" }
+    ],
+    links: [
+      { label: "PacketPulse →", href: "https://github.com/bezosonfleek/PacketPulse", cls: "outline" }
+    ]
+  },
+
+  linux: {
+    badge: "OS · Linux Administration",
+    accent: "#00a8ff",
+    title: "Linux — System Administration & Hardening",
+    desc: "Daily Linux usage across home lab VMs and cloud instances. Comfortable with system administration, **SSH hardening**, **iptables** rules, service management, log analysis, and **bastion host** configuration. Applied CIS-aligned hardening practices to lab and cloud environments.",
+    tags: ["SSH Hardening", "iptables", "systemd", "Auditd", "Bash", "Syslog", "cron"],
+    stats: [
+      { label: "Distros", val: "Ubuntu", sub: "Daily driver" },
+      { label: "Key Focus", val: "Hardening", sub: "Bastion hosts" },
+      { label: "Usage", val: "Daily", sub: "Lab + Cloud" }
+    ],
+    steps: [
+      { n:"01", text: "<strong>SSH key-only auth</strong> — disabled password auth, locked down sshd_config parameters." },
+      { n:"02", text: "<strong>iptables rules</strong> — whitelisted inbound on port 22 only, dropped all other inbound." },
+      { n:"03", text: "<strong>Auditd logging</strong> — configured audit rules for privilege escalation and file access." },
+      { n:"04", text: "<strong>Service hardening</strong> — disabled unused services, configured systemd unit security flags." },
+      { n:"05", text: "<strong>Automated patching</strong> — unattended-upgrades configured for security patches." }
+    ],
+    cl: {
+      ch: [
+        { h: "iptables Persistence", b: "Rules lost on reboot — learned to use iptables-persistent or nftables with save." },
+        { h: "Auditd Overhead", b: "Verbose audit rules caused performance issues — scoped to high-value paths only." }
+      ],
+      ln: [
+        { h: "Defence in Depth", b: "Layering SSH hardening + iptables + auditd creates meaningful security depth." },
+        { h: "Least Functionality", b: "Disabling unused services is the cheapest way to reduce attack surface." }
+      ]
+    },
+    terminal: [
+      { type: "cmd",     text: "grep -E \"^(PermitRootLogin|PasswordAuthentication)\" /etc/ssh/sshd_config" },
+      { type: "ok",      text: "PermitRootLogin no" },
+      { type: "ok",      text: "PasswordAuthentication no ✓" },
+      { type: "cmd",     text: "iptables -L INPUT --line-numbers | head -8" },
+      { type: "ok",      text: "1  ACCEPT  tcp  --  anywhere  port 22" },
+      { type: "ok",      text: "2  DROP    all  --  anywhere  anywhere ✓" }
+    ],
+    links: []
+  },
+
+  cicd: {
+    badge: "Automation · CI/CD Pipelines",
+    accent: "#4cd137",
+    title: "CI/CD & Deployment Automation",
+    desc: "Authored automated **CI/CD pipelines** using GitHub Actions to synchronise cloud-hosted assets. Implemented cryptographic verification tasks, automated S3 sync on push, **CloudFront cache invalidation**, and secrets management via GitHub's encrypted secrets vault. Applied OIDC federated authentication to eliminate long-lived credentials.",
+    tags: ["GitHub Actions", "OIDC Auth", "S3 Sync", "Cache Invalidation", "Secrets", "YAML"],
+    stats: [
+      { label: "Avg Run Time", val: "42s", sub: "Optimised" },
+      { label: "Credentials", val: "OIDC", sub: "No long-lived keys" },
+      { label: "Status", val: "Active", sub: "Running" }
+    ],
+    steps: [
+      { n:"01", text: "<strong>OIDC federated auth</strong> — temporary AWS credentials via OIDC, no static access keys." },
+      { n:"02", text: "<strong>Asset linting & audit</strong> — structural checks on code quality before deployment." },
+      { n:"03", text: "<strong>S3 object sync</strong> — optimised sync with checksum comparison, only changed files uploaded." },
+      { n:"04", text: "<strong>CloudFront invalidation</strong> — automated cache invalidation after every deployment." },
+      { n:"05", text: "<strong>Secrets management</strong> — all sensitive values in GitHub encrypted secrets, never in YAML." }
+    ],
+    cl: {
+      ch: [
+        { h: "OIDC Trust Policy", b: "Configuring the AWS IAM trust relationship for GitHub OIDC required precise condition keys." },
+        { h: "Cache Invalidation Cost", b: "Excessive invalidations incur AWS costs — batched to single /*  invalidation per run." }
+      ],
+      ln: [
+        { h: "Keyless Auth", b: "OIDC eliminates the risk of long-lived credential exposure in CI pipelines." },
+        { h: "Idempotent Deployments", b: "S3 sync's checksum comparison makes deployments safe to re-run without side effects." }
+      ]
+    },
+    terminal: [
+      { type: "cmd",     text: "gh run view --workflow=aws-deploy.yml --log" },
+      { type: "ok",      text: "Step 1: Linting — passed ✓" },
+      { type: "ok",      text: "Step 2: AWS OIDC auth — token acquired ✓" },
+      { type: "ok",      text: "Step 3: S3 sync — 12 objects updated" },
+      { type: "ok",      text: "Step 4: CloudFront invalidation — complete ✓" },
+      { type: "ok",      text: "Run #48102 — completed in 42 seconds ✓" }
+    ],
+    links: [
+      { label: "GitHub →", href: "https://github.com/bezosonfleek", cls: "outline" }
+    ]
+  }
+
+};
+
+/* ── Colour accent map ── */
+const accentMap = {
+  terraform: "#7b42f6",
+  aws:       "#ff9900",
+  docker:    "#2496ed",
+  homelab:   "#10b981",
+  siem:      "#f6ad55",
+  nmap:      "#10b981",
+  python:    "#3572A5",
+  linux:     "#00a8ff",
+  cicd:      "#4cd137"
+};
+
+function hex(h, a) {
+  const r = parseInt(h.slice(1,3),16);
+  const g = parseInt(h.slice(3,5),16);
+  const b = parseInt(h.slice(5,7),16);
+  return `rgba(${r},${g},${b},${a})`;
 }
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.05 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+function loadNode(key) {
+  const n = nodes[key];
+  if (!n) return;
+
+  /* Update CSS accent */
+  const root = document.documentElement;
+  root.style.setProperty('--accent', n.accent);
+  root.style.setProperty('--accent-dim', hex(n.accent, 0.06));
+  root.style.setProperty('--accent-border', hex(n.accent, 0.28));
+  root.style.setProperty('--accent-glow', hex(n.accent, 0.15));
+
+  /* Badge */
+  document.getElementById('badge-text').textContent = n.badge;
+  document.querySelector('.blink').style.background = n.accent;
+
+  /* Stats */
+  const statsEl = document.getElementById('stats-row');
+  statsEl.innerHTML = n.stats.map(s => `
+    <div class="stat-cell">
+      <div class="stat-label">${s.label}</div>
+      <div class="stat-val">${s.val}</div>
+      <div class="stat-sub">${s.sub}</div>
+    </div>
+  `).join('');
+
+  /* Title + desc + tags */
+  document.getElementById('node-title').textContent = n.title;
+  document.getElementById('node-desc').innerHTML = n.desc.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+  const tagsEl = document.getElementById('node-tags');
+  tagsEl.innerHTML = n.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+  /* Steps */
+  const stepsEl = document.getElementById('node-steps');
+  stepsEl.innerHTML = n.steps.map(s => `
+    <div class="step-item">
+      <div class="step-num">${s.n}</div>
+      <div class="step-text">${s.text}</div>
+    </div>
+  `).join('');
+
+  /* CL grid */
+  const clEl = document.getElementById('cl-grid');
+  clEl.innerHTML = `
+    <div class="cl-box ch">
+      <span class="cl-box-label">Challenges</span>
+      ${n.cl.ch.map(i => `<div class="cl-item"><strong>${i.h}</strong>${i.b}</div>`).join('')}
+    </div>
+    <div class="cl-box ln">
+      <span class="cl-box-label">Learnings</span>
+      ${n.cl.ln.map(i => `<div class="cl-item"><strong>${i.h}</strong>${i.b}</div>`).join('')}
+    </div>
+  `;
+
+  /* Terminal */
+  document.getElementById('term-label').textContent = `bash · telemetry_${key}`;
+  const termEl = document.getElementById('node-terminal');
+  termEl.innerHTML = n.terminal.map(line => {
+    if (line.type === 'cmd')     return `<div class="t-line"><span class="prompt" style="color:${n.accent}">$</span><span class="t-cmd">${line.text}</span></div>`;
+    if (line.type === 'ok')      return `<div class="t-line"><span class="prompt"> </span><span class="t-ok">${line.text}</span></div>`;
+    if (line.type === 'warn')    return `<div class="t-line"><span class="prompt"> </span><span class="t-warn">${line.text}</span></div>`;
+    return `<div class="t-line"><span class="prompt"> </span><span class="t-comment">${line.text}</span></div>`;
+  }).join('');
+
+  /* Links */
+  const linksEl = document.getElementById('node-links');
+  linksEl.innerHTML = n.links.map(l =>
+    `<a href="${l.href}" target="_blank" class="proj-link ${l.cls}">${l.label}</a>`
+  ).join('');
+
+  /* Active state on grid */
+  document.querySelectorAll('.skill-item').forEach(el => el.classList.remove('active'));
+  const btn = document.getElementById(`btn-${key}`);
+  if (btn) btn.classList.add('active');
+}
+
+loadNode('terraform');
 </script>
 </body>
 </html>
