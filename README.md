@@ -1,3 +1,3 @@
 # Sakora's-Portfolio
 
-Sharing my passion with you...
+Live demo of past, present & anticipated work.
