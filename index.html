@@ -80,7 +80,7 @@ nav a.nl{text-decoration:none;color:var(--dim)}nav a.nl:hover{color:var(--text)}
 .tile .arr{align-self:flex-end;font-size:24px;color:var(--acc)}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
 .tags span{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 10px;color:var(--dim)}
-.t1{grid-column:span 7}.t2{grid-column:span 5}.t3{grid-column:span 5}.t4{grid-column:span 7;background:var(--acc);border-color:var(--acc);color:var(--ink)}
+.t0{grid-column:span 7}.t1{grid-column:span 5}.t2,.t3,.t4{grid-column:span 4}.t4{background:var(--acc);border-color:var(--acc);color:var(--ink)}
 .t4 p,.t4 .kick,.t4 .arr{color:var(--ink)}
 /* terminal + experience */
 .two{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:start}
@@ -110,7 +110,7 @@ a.cred:hover{border-color:var(--acc)}
 .contact h2{font-size:clamp(32px,5vw,52px)}
 footer{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;padding:36px 0 44px;color:var(--dim);font-size:14px}
 footer a{color:var(--dim)}
-@media(max-width:900px){.hero,.two{grid-template-columns:1fr}.path{grid-template-columns:1fr;gap:28px}.step:not(:last-child)::after{top:100%;left:50%;width:0;height:28px;border-top:0;border-left:2px dashed var(--acc)}.step:not(:last-child)::before{top:calc(100% + 20px);left:calc(50% - 4px)}.creds{grid-template-columns:repeat(2,1fr)}.t1,.t2,.t3,.t4{grid-column:span 12}.ph{margin:0 16px 16px 0}}
+@media(max-width:900px){.hero,.two{grid-template-columns:1fr}.path{grid-template-columns:1fr;gap:28px}.step:not(:last-child)::after{top:100%;left:50%;width:0;height:28px;border-top:0;border-left:2px dashed var(--acc)}.step:not(:last-child)::before{top:calc(100% + 20px);left:calc(50% - 4px)}.creds{grid-template-columns:repeat(2,1fr)}.t0,.t1,.t2,.t3,.t4{grid-column:span 12}.ph{margin:0 16px 16px 0}}
 @media(max-width:560px){.nums{grid-template-columns:1fr}.creds{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
 </style>
@@ -128,10 +128,10 @@ footer a{color:var(--dim)}
 <main>
 <div class="hero">
   <div>
-    <p class="status"><span class="dot"></span>Open to Roles and Freelance jobs</p>
+    <p class="status"><span class="dot"></span>Open to roles and small freelance jobs</p>
     <h1>Cloud and DevOps <em>engineer.</em></h1>
-    <p class="sub">I build infrastructure, secure, test, document.</p>
-    <p class="dim" style="color:var(--dim);max-width:56ch">I’m Geoffrey, a Junior Engineer in Nairobi. I work with Linux servers, Containers, Automated Pipelines, Backup and recovery with a focus on security & reliability. I am building toward Cloud Security and DevSecOps.</p>
+    <p class="sub">I build infrastructure, test it until it breaks, and write down what happened.</p>
+    <p class="dim" style="color:var(--dim);max-width:56ch">I’m Geoffrey, a junior engineer in Nairobi. I work with Linux servers, containers and automated pipelines, with a focus on backup and recovery, and I’m building toward cloud security.</p>
     <div class="cta"><a class="btn p" href="#projects">See my projects</a><a class="btn" href="SakoraResume.pdf">Download CV</a><a class="btn" href="mailto:geoffreysakora@gmail.com?subject=Hello%20Geoffrey">Email me</a></div>
   </div>
   <figure class="ph"><img src="assets/jeff-passport.jpg" alt="Portrait of Geoffrey Sakora" width="380" height="475"></figure>
@@ -153,7 +153,7 @@ footer a{color:var(--dim)}
     <div class="num"><b>23 s</b><span>to restore it, checked by checksum, fsck and a boot test</span></div>
     <div class="num"><b>&lt; 14 min</b><span>PostgreSQL point-in-time recovery</span></div>
   </div>
-  <p style="color:var(--dim);font-size:14px;margin-top:14px">Measured in real environments.</p>
+  <p style="color:var(--dim);font-size:14px;margin-top:14px">Measured in test environments.</p>
 </section>
 
 <section id="experience">
@@ -170,9 +170,9 @@ footer a{color:var(--dim)}
     <div>
       <h2>Experience</h2>
       <ul class="tl" style="margin-top:24px">
-        <li><b>Junior DevOps Engineer</b><span>Truehost Cloud · Aug 2026 - Present</span></li>
-        <li><b>IT Intern, Systems and Infrastructure</b><span>CFAO Mobility Kenya · Jul - Sep 2025</span></li>
-        <li><b>IT Intern, Systems & Software</b><span>Isuzu East Africa · May - Aug 2024</span></li>
+        <li><b>Junior DevOps Engineer</b><span>Truehost Cloud · Aug 2026 to present</span></li>
+        <li><b>IT Intern, systems and infrastructure</b><span>CFAO Mobility Kenya · Jul to Sep 2025</span></li>
+        <li><b>IT Intern, systems and software</b><span>Isuzu East Africa · May to Aug 2024</span></li>
         <li><b>BSc IT</b><span>Multimedia University of Kenya · Nov 2026</span></li>
       </ul>
     </div>
@@ -183,6 +183,7 @@ footer a{color:var(--dim)}
   <h2>Projects</h2>
   <p class="lede">Each one has its own page with the architecture, the tests and what broke.</p>
   <div class="bento">
+    <a class="tile t0" href="https://projects.geoffreysakora.cv/compose-to-k8s/" target="_blank" rel="noopener"><div><span class="kick">Final stages</span><h3>Compose to Kubernetes migration</h3><p>A multi-service app moved from Docker Compose to Kubernetes, documented from a clean environment through cutover and rollback.</p><div class="tags"><span>Kubernetes</span><span>Docker Compose</span><span>Kompose</span><span>Kustomize</span></div></div><span class="arr" aria-hidden="true">↗</span></a>
     <a class="tile t1" href="https://projects.geoffreysakora.cv/zerodrift/" target="_blank" rel="noopener"><div><span class="kick">In progress</span><h3>ZeroDrift</h3><p>Terraform for an AWS VPC and server. Every change is a pull request with a plan to review before it is applied.</p><div class="tags"><span>Terraform</span><span>AWS</span><span>GitHub Actions</span></div></div><span class="arr" aria-hidden="true">↗</span></a>
     <a class="tile t2" href="https://projects.geoffreysakora.cv/todo-app/" target="_blank" rel="noopener"><div><span class="kick">Built</span><h3>Containerized ToDo app</h3><p>A REST API with a database, containerized with Docker Compose and deployed to AWS EC2.</p><div class="tags"><span>Docker</span><span>FastAPI</span><span>PostgreSQL</span></div></div><span class="arr" aria-hidden="true">↗</span></a>
     <a class="tile t3" href="https://github.com/bezosonfleek/PacketPulse" target="_blank" rel="noopener"><div><span class="kick">Built</span><h3>PacketPulse</h3><p>A network scanner with a web interface, run with Docker Compose. Built for networks I own or have permission to test.</p><div class="tags"><span>Python</span><span>nginx</span><span>PostgreSQL</span><span>Docker</span></div></div><span class="arr" aria-hidden="true">↗</span></a>
@@ -202,8 +203,8 @@ footer a{color:var(--dim)}
 
 <section id="contact" class="contact">
   <h2>Let’s talk.</h2>
-  <p class="lede" style="margin-bottom:0">I’m open to Cloud, DevOps and DevSecOps/Security roles, and to small freelance jobs such as Cloud Environment setup, Cloud Security and Cost audit, Server Hardening, Bash Automation for Servers, CI/CD and Tested Backups.</p>
-  <div class="cta"><a class="btn p" href="mailto:geoffreysakora@gmail.com?subject=ReachOut%20to%20Geoffrey%20from%20Portfolio">geoffreysakora@gmail.com</a><a class="btn" href="https://www.linkedin.com/in/geoffrey-sakora-7o7/">LinkedIn</a><a class="btn" href="https://github.com/bezosonfleek">GitHub</a></div>
+  <p class="lede" style="margin-bottom:0">I’m open to cloud, DevOps and DevSecOps roles, and to small freelance jobs such as tested backups, server hardening and CI/CD.</p>
+  <div class="cta"><a class="btn p" href="mailto:geoffreysakora@gmail.com?subject=Hello%20Geoffrey">geoffreysakora@gmail.com</a><a class="btn" href="https://www.linkedin.com/in/geoffrey-sakora-7o7/">LinkedIn</a><a class="btn" href="https://github.com/bezosonfleek">GitHub</a></div>
 </section>
 </main>
 
